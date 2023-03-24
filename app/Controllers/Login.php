@@ -13,6 +13,7 @@ class Login extends BaseController
     {
         $session = session();
         $session->destroy();
+        header("location: /login");
     }
     public function login()
     {
@@ -29,7 +30,7 @@ class Login extends BaseController
             $session = session();
            
             $session->set("id_usuario",$result['id_usuario']);
-            return redirect("/");
+            header("location: /");
         } else {
             return view('login_view', $data);
         }
