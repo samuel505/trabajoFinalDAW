@@ -20,11 +20,11 @@
                <div class="col-md-5 col-sm-12 col-12 align-self-center">
                   <?php if(isset($errores) && !empty($errores)){?>
                   <div class="alert alert-danger" role="alert">
-                     <div class="iq-alert-text">El <b>correo</b> o la <b>contraseña</b> con erroneos</div>
+                     <div class="iq-alert-text">El <b>correo</b> y/o <b>contraseña</b> son incorrectos</div>
                   </div>
                   <?php }?>
                   <div class="sign-user_card">
-                     <img src="images/logo.png" class="img-fluid rounded-normal light-logo logo" alt="logo">
+                     <img src="assets/images/logo.png" class="img-fluid rounded-normal light-logo logo" alt="logo">
                      <h3 class="mb-3">Sign In</h3>
                      <p>Login to stay connected.</p>
                      <form action="/login" method="POST">

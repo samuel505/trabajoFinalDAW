@@ -1,378 +1,340 @@
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>FileHub</title>
-      
-      <!-- Favicon -->
-      <link rel="shortcut icon" href="assets/images/favicon.ico" />
-      
-      <link rel="stylesheet" href="assets/css/backend-plugin.min.css">
-      <link rel="stylesheet" href="assets/css/backend.css?v=1.0.0">
-      
-      <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
-      <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
-      <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
-      
-      <!-- Viewer Plugin -->
-        <!--PDF-->
-        <link rel="stylesheet" href="assets/vendor/doc-viewer/include/pdf/pdf.viewer.css">
-        <!--Docs-->
-        <!--PPTX-->
-        <link rel="stylesheet" href="assets/vendor/doc-viewer/include/PPTXjs/css/pptxjs.css">
-        <link rel="stylesheet" href="assets/vendor/doc-viewer/include/PPTXjs/css/nv.d3.min.css">
-        <!--All Spreadsheet -->
-        <link rel="stylesheet" href="assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.css">
-        <!--Image viewer-->
-        <link rel="stylesheet" href="assets/vendor/doc-viewer/include/verySimpleImageViewer/css/jquery.verySimpleImageViewer.css">
-        <!--officeToHtml-->
-        <link rel="stylesheet" href="assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.css">  </head>
-  <body class="  ">
-    <!-- loader Start -->
 
-    <!-- loader END -->
-    <!-- Wrapper Start -->
-    <div class="wrapper">
-      
-    <?php include "templates/left_navbar.php"?>
-    <div class="iq-top-navbar">
-          <div class="iq-navbar-custom">
-              <nav class="navbar navbar-expand-lg navbar-light p-0">
-              <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
-                  <i class="ri-menu-line wrapper-menu"></i>
-                  <a href="index.html" class="header-logo">
-                      <img src="../assets/images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo">
-                      <img src="../assets/images/logo-white.png" class="img-fluid rounded-normal darkmode-logo" alt="logo">
-                  </a>
-              </div>
-                  <div class="iq-search-bar device-search">
-                      
-                      <form>
-                          <div class="input-prepend input-append">
-                              <div class="btn-group">
-                                  <label class="dropdown-toggle searchbox" data-toggle="dropdown">
-                                  <input class="dropdown-toggle search-query text search-input" type="text" placeholder="Type here to search..."><span class="search-replace"></span>
-                                  <a class="search-link" href="#"><i class="ri-search-line"></i></a>
-                                  <span class="caret"><!--icon--></span>
-                                  </label>
-                                  <ul class="dropdown-menu">
-                                      <li><a href="#"><div class="item"><i class="far fa-file-pdf bg-info"></i>PDFs</div></a></li>
-                                      <li><a href="#"><div class="item"><i class="far fa-file-alt bg-primary"></i>Documents</div></a></li>
-                                      <li><a href="#"><div class="item"><i class="far fa-file-excel bg-success"></i>Spreadsheet</div></a></li>
-                                      <li><a href="#"><div class="item"><i class="far fa-file-powerpoint bg-danger"></i>Presentation</div></a></li>
-                                      <li><a href="#"><div class="item"><i class="far fa-file-image bg-warning"></i>Photos &amp; Images</div></a></li>
-                                      <li><a href="#"><div class="item"><i class="far fa-file-video bg-info"></i>Videos</div></a></li>
-                                  </ul>
-                              </div>
-                          </div>
-                      </form>
-                  </div>
-      
-                  <div class="d-flex align-items-center">
-                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
-                      <i class="ri-menu-3-line"></i>
-                      </button>
-                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                          <ul class="navbar-nav ml-auto navbar-list align-items-center">
-                          <li class="nav-item nav-icon search-content">
-                              <a href="#" class="search-toggle rounded" id="dropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <i class="ri-search-line"></i>
-                              </a>
-                              <div class="iq-search-bar iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownSearch">
-                                  <form action="#" class="searchbox p-2">
-                                      <div class="form-group mb-0 position-relative">
-                                      <input type="text" class="text search-input font-size-12" placeholder="type here to search...">
-                                      <a href="#" class="search-link"><i class="las la-search"></i></a> 
-                                      </div>
-                                  </form>
-                              </div>
-                          </li> 
-                          <li class="nav-item nav-icon dropdown">
-                              <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="ri-question-line"></i>
-                              </a>
-                              <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton01">
-                                  <div class="card shadow-none m-0">
-                                      <div class="card-body p-0 ">
-                                          <div class="p-3">
-                                              <a href="#" class="iq-sub-card pt-0"><i class="ri-questionnaire-line"></i>Help</a>
-                                              <a href="#" class="iq-sub-card"><i class="ri-recycle-line"></i>Training</a>
-                                              <a href="#" class="iq-sub-card"><i class="ri-refresh-line"></i>Updates</a>
-                                              <a href="#" class="iq-sub-card"><i class="ri-service-line"></i>Terms and Policy</a>
-                                              <a href="#" class="iq-sub-card"><i class="ri-feedback-line"></i>Send Feedback</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </li>
-                          <li class="nav-item nav-icon dropdown"> 
-                              <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="ri-settings-3-line"></i>
-                              </a>
-                              <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton02">
-                                  <div class="card shadow-none m-0">
-                                      <div class="card-body p-0 ">
-                                          <div class="p-3">
-                                              <a href="#" class="iq-sub-card pt-0"><i class="ri-settings-3-line"></i> Settings</a>
-                                              <a href="#" class="iq-sub-card"><i class="ri-hard-drive-line"></i> Get Drive for desktop</a>
-                                              <a href="#" class="iq-sub-card"><i class="ri-keyboard-line"></i> Keyboard Shortcuts</a>
-                                          </div>                                
-                                      </div>
-                                  </div>
-                              </div>
-                          </li>
-                          <li class="nav-item nav-icon dropdown caption-content">
-                              <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <div class="caption bg-primary line-height">P</div>
-                              </a>
-                              <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton03">
-                                  <div class="card mb-0">
-                                      <div class="card-header d-flex justify-content-between align-items-center mb-0">
-                                      <div class="header-title">
-                                          <h4 class="card-title mb-0">Profile</h4>
-                                      </div>
-                                      <div class="close-data text-right badge badge-primary cursor-pointer "><i class="ri-close-fill"></i></div>
-                                      </div>
-                                      <div class="card-body">
-                                          <div class="profile-header">
-                                              <div class="cover-container text-center">
-                                                  <div class="rounded-circle profile-icon bg-primary mx-auto d-block">
-                                                      P                                                    
-                                                      <a href="">
-                                                          
-                                                      </a>
-                                                  </div>
-                                                  <div class="profile-detail mt-3">
-                                                  <h5><a href="../app/user-profile-edit.html">Panny Marco</a></h5>
-                                                  <p>pannymarco@gmail.com</p>
-                                                  </div>
-                                                  <a href="auth-sign-in.html" class="btn btn-primary">Sign Out</a>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </li>
-                          </ul>                     
-                      </div> 
-                  </div>
-              </nav>
-          </div>
-      </div>
-      <div class="content-page">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                     <div class="d-flex align-items-center justify-content-between welcome-content mb-3">
-                        <h4>All Files</h4>
-                        <div class="d-flex align-items-center">
-                            <div class="list-grid-toggle mr-4">
-                                <span class="icon icon-grid i-grid"><i class="ri-layout-grid-line font-size-20"></i></span>
-                                <span class="icon icon-grid i-list"><i class="ri-list-check font-size-20"></i></span>
-                                <span class="label label-list">List</span>
-                            </div>
-                            <div class="dashboard1-dropdown d-flex align-items-center">
-                                <div class="dashboard1-info rounded">
-                                    <a href="#calander" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                                        <i class="ri-arrow-down-s-line"></i>
-                                    </a>
-                                    <ul id="calander" class="iq-dropdown collapse list-inline m-0 p-0 mt-2">
-                                        <li class="mb-2">
-                                            <a href="#" data-toggle="tooltip" data-placement="right" title="Calander"><i
-                                                    class="las la-calendar iq-arrow-left"></i></a>
-                                        </li>
-                                        <li class="mb-2">
-                                            <a href="#" data-toggle="tooltip" data-placement="right" title="Keep"><i
-                                                    class="las la-lightbulb iq-arrow-left"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-toggle="tooltip" data-placement="right" title="Tasks"><i
-                                                    class="las la-tasks iq-arrow-left"></i></a>
-                                        </li>                                        
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>FileHub</title>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    <link rel="stylesheet" href="assets/css/backend-plugin.min.css">
+    <link rel="stylesheet" href="assets/css/backend.css?v=1.0.0">
+    <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
+    <link rel="stylesheet" href="assets/vendor/doc-viewer/include/pdf/pdf.viewer.css">
+    <link rel="stylesheet" href="assets/vendor/doc-viewer/include/PPTXjs/css/pptxjs.css">
+    <link rel="stylesheet" href="assets/vendor/doc-viewer/include/PPTXjs/css/nv.d3.min.css">
+    <link rel="stylesheet" href="assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.css">
+    <link rel="stylesheet" href="assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body class=" ">
+    <div class="wrapper" id="drop_zone">
+        <?php include "templates/left_navbar.php" ?>
+        <div class="iq-top-navbar">
+            <div class="iq-navbar-custom">
+                <nav class="navbar navbar-expand-lg navbar-light p-0">
+                    <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
+                        <i class="ri-menu-line wrapper-menu"></i>
+                        <a href="index.html" class="header-logo">
+                            <img src="../assets/images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo">
+                        </a>
+                    </div>
+                    <div class="iq-search-bar device-search">
+                        <form>
+                            <div class="input-prepend input-append">
+                                <div class="btn-group">
+                                    <label class="dropdown-toggle searchbox" data-toggle="dropdown">
+                                        <input class="dropdown-toggle search-query text search-input" type="text" placeholder="Type here to search..."><span class="search-replace"></span>
+                                        <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                                        <span class="caret"><!--icon--></span>
+                                    </label>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">
+                                                <div class="item"><i class="far fa-file-pdf bg-info"></i>PDFs</div>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <div class="item"><i class="far fa-file-alt bg-primary"></i>Documents</div>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <div class="item"><i class="far fa-file-excel bg-success"></i>Spreadsheet</div>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <div class="item"><i class="far fa-file-powerpoint bg-danger"></i>Presentation</div>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <div class="item"><i class="far fa-file-image bg-warning"></i>Photos &amp; Images</div>
+                                            </a></li>
+                                        <li><a href="#">
+                                                <div class="item"><i class="far fa-file-video bg-info"></i>Videos</div>
+                                            </a></li>
                                     </ul>
                                 </div>
                             </div>
+                        </form>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
+                            <i class="ri-menu-3-line"></i>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto navbar-list align-items-center">
+                                <li class="nav-item nav-icon search-content">
+                                    <a href="#" class="search-toggle rounded" id="dropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="ri-search-line"></i>
+                                    </a>
+                                    <div class="iq-search-bar iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownSearch">
+                                        <form action="#" class="searchbox p-2">
+                                            <div class="form-group mb-0 position-relative">
+                                                <input type="text" class="text search-input font-size-12" placeholder="type here to search...">
+                                                <a href="#" class="search-link"><i class="las la-search"></i></a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                                <li class="nav-item nav-icon dropdown">
+                                    <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="ri-question-line"></i>
+                                    </a>
+                                    <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton01">
+                                        <div class="card shadow-none m-0">
+                                            <div class="card-body p-0 ">
+                                                <div class="p-3">
+                                                    <a href="#" class="iq-sub-card pt-0"><i class="ri-questionnaire-line"></i>Help</a>
+                                                    <a href="#" class="iq-sub-card"><i class="ri-recycle-line"></i>Training</a>
+                                                    <a href="#" class="iq-sub-card"><i class="ri-refresh-line"></i>Updates</a>
+                                                    <a href="#" class="iq-sub-card"><i class="ri-service-line"></i>Terms and Policy</a>
+                                                    <a href="#" class="iq-sub-card"><i class="ri-feedback-line"></i>Send Feedback</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item nav-icon dropdown">
+                                    <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="ri-settings-3-line"></i>
+                                    </a>
+                                    <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton02">
+                                        <div class="card shadow-none m-0">
+                                            <div class="card-body p-0 ">
+                                                <div class="p-3">
+                                                    <a href="#" class="iq-sub-card pt-0"><i class="ri-settings-3-line"></i> Settings</a>
+                                                    <a href="#" class="iq-sub-card"><i class="ri-hard-drive-line"></i> Get Drive for desktop</a>
+                                                    <a href="#" class="iq-sub-card"><i class="ri-keyboard-line"></i> Keyboard Shortcuts</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item nav-icon dropdown caption-content">
+                                    <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div class="caption bg-primary line-height">P</div>
+                                    </a>
+                                    <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton03">
+                                        <div class="card mb-0">
+                                            <div class="card-header d-flex justify-content-between align-items-center mb-0">
+                                                <div class="header-title">
+                                                    <h4 class="card-title mb-0">Profile</h4>
+                                                </div>
+                                                <div class="close-data text-right badge badge-primary cursor-pointer "><i class="ri-close-fill"></i></div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="profile-header">
+                                                    <div class="cover-container text-center">
+                                                        <div class="rounded-circle profile-icon bg-primary mx-auto d-block">
+                                                            P
+                                                            <a href="">
+
+                                                            </a>
+                                                        </div>
+                                                        <div class="profile-detail mt-3">
+                                                            <h5><a href="">Panny Marco</a></h5>
+                                                            <p>pannymarco@gmail.com</p>
+                                                        </div>
+                                                        <a href="/logout" class="btn btn-primary">Sign Out</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                     </div>
-                </div>
+                    </div>
+                </nav>
             </div>
-            <div class="icon icon-grid i-grid">
-                <div class="row"> 
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body image-thumb">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <a href="#" data-title="Spike.pdf" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal"><img src="assets/images/layouts/page-7/pdf.png" class="img-fluid" alt="image1"></a>         
-                                </div>
-                                <h6>Spike.pdf</h6>            
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body image-thumb">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <a href="#" data-title="Support.docx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal"><img src="assets/images/layouts/page-7/doc.png" class="img-fluid" alt="image1"></a>
-                                </div>
-                                <h6>Support.docx</h6>     
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body image-thumb">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <a href="#"  data-title="Colour.xlsx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.xlsx" data-toggle="modal" data-target="#exampleModal"><img src="assets/images/layouts/page-7/xlsx.png" class="img-fluid" alt="image1"></a>
-                                </div>
-                                <h6>Colour.xlsx</h6> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body image-thumb">
-                                <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                    <div class="iq-image-overlay"></div>
-                                    <a href="#" data-title="Flavour.pptx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pptx" data-toggle="modal" data-target="#exampleModal"><img src="assets/images/layouts/page-7/ppt.png" class="img-fluid" alt="image1"></a>           
-                                </div>
-                                <h6>Flavour.pptx</h6>          
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="icon icon-grid i-list">
+        </div>
+        <div class="content-page">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="card card-block card-stretch card-height">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table mb-0 table-borderless tbl-server-info">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Owner</th>
-                                            <th scope="col">Last Edit</th>
-                                            <th scope="col">File Size</th>
-                                            <th scope="col"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="icon-small bg-danger rounded mr-3">
-                                                        <i class="ri-file-excel-line"></i>
-                                                    </div>
-                                                    <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal" data-title="alexa5.pdf" style="cursor: pointer;">Weekly Report.pdf</div>
-                                                </div>
-                                            </td>
-                                            <td>Me</td>
-                                            <td>Mar 30, 2020 Gail Forcewind</td>
-                                            <td>10 MB</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="dropdown-toggle" id="dropdownMenuButton10" data-toggle="dropdown">
-                                                        <i class="ri-more-fill"></i>
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton10">
-                                                        <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="icon-small bg-primary rounded mr-3">
-                                                        <i class="ri-file-download-line"></i>
-                                                    </div>
-                                                    <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal" data-title="alexa6.docx" style="cursor: pointer;">Milestone.docx</div>
-                                                </div>
-                                            </td>
-                                            <td>Penny</td>
-                                            <td>Mar 31, 2020 Penny</td>
-                                            <td>65 MB</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="dropdown-toggle" id="dropdownMenuButton11" data-toggle="dropdown">
-                                                        <i class="ri-more-fill"></i>
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton11">
-                                                        <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="icon-small bg-info rounded mr-3">
-                                                        <i class="ri-file-excel-line"></i>
-                                                    </div>
-                                                    <div data-title="Alexa8.xlsx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.xlsx" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">Training center.xlsx</div>
-                                                </div>
-                                            </td>
-                                            <td>Banny</td>
-                                            <td>Mar 30, 2020 Banny</td>
-                                            <td>90 MB</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="dropdown-toggle" id="dropdownMenuButton13" data-toggle="dropdown">
-                                                        <i class="ri-more-fill"></i>
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton13">
-                                                        <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="icon-small bg-success rounded mr-3">
-                                                        <i class="ri-file-excel-line"></i>
-                                                    </div>
-                                                    <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal" data-title="alexa7.pptx" style="cursor: pointer;">Flavour.pptx</div>
-                                                </div>
-                                            </td>
-                                            <td>Me</td>
-                                            <td>Apr 04, 2020 me</td>
-                                            <td>10 MB</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <span class="dropdown-toggle" id="dropdownMenuButton12" data-toggle="dropdown">
-                                                        <i class="ri-more-fill"></i>
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton12">
-                                                        <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
-                                                        <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    </table>
+                        <div class="d-flex align-items-center justify-content-between welcome-content mb-3">
+                            <h4>All Files</h4>
+                            <div class="d-flex align-items-center">
+                                <div class="list-grid-toggle mr-4">
+                                    <span class="icon icon-grid i-grid"><i class="ri-layout-grid-line font-size-20"></i></span>
+                                    <span class="icon icon-grid i-list"><i class="ri-list-check font-size-20"></i></span>
+                                    <span class="label label-list">List</span>
+                                </div>
+                                <div class="dashboard1-dropdown d-flex align-items-center">
+                                    <div class="dashboard1-info rounded">
+                                        <a href="#calander" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                                            <i class="ri-arrow-down-s-line"></i>
+                                        </a>
+                                        <ul id="calander" class="iq-dropdown collapse list-inline m-0 p-0 mt-2">
+                                            <li class="mb-2">
+                                                <a href="#" data-toggle="tooltip" data-placement="right" title="Calander"><i class="las la-calendar iq-arrow-left"></i></a>
+                                            </li>
+                                            <li class="mb-2">
+                                                <a href="#" data-toggle="tooltip" data-placement="right" title="Keep"><i class="las la-lightbulb iq-arrow-left"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" data-toggle="tooltip" data-placement="right" title="Tasks"><i class="las la-tasks iq-arrow-left"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="icon icon-grid i-grid">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-block card-stretch card-height">
+                                <div class="card-body image-thumb">
+                                    <div class="mb-4 text-center p-3 rounded iq-thumb">
+                                        <div class="iq-image-overlay"></div>
+                                        <a href="#" data-title="Spike.pdf" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal"><img src="assets/images/layouts/page-7/pdf.png" class="img-fluid" alt="image1"></a>
+                                    </div>
+                                    <h6>Spike.pdf</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="icon icon-grid i-list">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card card-block card-stretch card-height">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table mb-0 table-borderless tbl-server-info">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Owner</th>
+                                                    <th scope="col">Last Edit</th>
+                                                    <th scope="col">File Size</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="icon-small bg-danger rounded mr-3">
+                                                                <i class="ri-file-excel-line"></i>
+                                                            </div>
+                                                            <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.pdf" data-toggle="modal" data-target="#exampleModal" data-title="alexa5.pdf" style="cursor: pointer;">Weekly Report.pdf</div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Me</td>
+                                                    <td>Mar 30, 2020 Gail Forcewind</td>
+                                                    <td>10 MB</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <span class="dropdown-toggle" id="dropdownMenuButton10" data-toggle="dropdown">
+                                                                <i class="ri-more-fill"></i>
+                                                            </span>
+                                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton10">
+                                                                <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="icon-small bg-primary rounded mr-3">
+                                                                <i class="ri-file-download-line"></i>
+                                                            </div>
+                                                            <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal" data-title="alexa6.docx" style="cursor: pointer;">Milestone.docx</div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Penny</td>
+                                                    <td>Mar 31, 2020 Penny</td>
+                                                    <td>65 MB</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <span class="dropdown-toggle" id="dropdownMenuButton11" data-toggle="dropdown">
+                                                                <i class="ri-more-fill"></i>
+                                                            </span>
+                                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton11">
+                                                                <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="icon-small bg-info rounded mr-3">
+                                                                <i class="ri-file-excel-line"></i>
+                                                            </div>
+                                                            <div data-title="Alexa8.xlsx" data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.xlsx" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">Training center.xlsx</div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Banny</td>
+                                                    <td>Mar 30, 2020 Banny</td>
+                                                    <td>90 MB</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <span class="dropdown-toggle" id="dropdownMenuButton13" data-toggle="dropdown">
+                                                                <i class="ri-more-fill"></i>
+                                                            </span>
+                                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton13">
+                                                                <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="icon-small bg-success rounded mr-3">
+                                                                <i class="ri-file-excel-line"></i>
+                                                            </div>
+                                                            <div data-load-file="file" data-load-target="#resolte-contaniner" data-url="assets/vendor/doc-viewer/files/demo.docx" data-toggle="modal" data-target="#exampleModal" data-title="alexa7.pptx" style="cursor: pointer;">Flavour.pptx</div>
+                                                        </div>
+                                                    </td>
+                                                    <td>Me</td>
+                                                    <td>Apr 04, 2020 me</td>
+                                                    <td>10 MB</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <span class="dropdown-toggle" id="dropdownMenuButton12" data-toggle="dropdown">
+                                                                <i class="ri-more-fill"></i>
+                                                            </span>
+                                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton12">
+                                                                <a class="dropdown-item" href="#"><i class="ri-eye-fill mr-2"></i>View</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-fill mr-2"></i>Delete</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-pencil-fill mr-2"></i>Edit</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-printer-fill mr-2"></i>Print</a>
+                                                                <a class="dropdown-item" href="#"><i class="ri-file-download-fill mr-2"></i>Download</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -380,9 +342,39 @@
                 </div>
             </div>
         </div>
-      </div>
     </div>
     <!-- Wrapper End-->
+
+    <script>
+        // Obtener la zona de caída y la barra de progreso
+        var dropZone = document.getElementById('drop_zone');
+
+        // Escuchar el evento "drop" en la zona de caída
+        dropZone.addEventListener('drop', function(e) {
+            e.preventDefault();
+
+            // Obtener el archivo arrastrado
+            var file = e.dataTransfer.files[0];
+
+            // Crear un objeto FormData y agregar el archivo
+            var formData = new FormData();
+            formData.append('archivo', file);
+
+            // Crear una solicitud AJAX para subir el archivo
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'subir-archivo.php');
+
+            // Escuchar el evento "progress" para actualizar la barra de progreso
+            xhr.upload.addEventListener('progress', function(e) {
+                var percent = (e.loaded / e.total) * 100;
+                // progressBar.value = percent;
+            });
+
+            // Enviar la solicitud con el objeto FormData
+            xhr.send(formData);
+        });
+    </script>
+
     <footer class="iq-footer">
         <div class="container-fluid">
             <div class="row">
@@ -393,20 +385,24 @@
                     </ul>
                 </div>
                 <div class="col-lg-6 text-right">
-                    <span class="mr-1"><script>document.write(new Date().getFullYear())</script>©</span> <a href="#" class="">CloudBOX</a>.
+                    <span class="mr-1">
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>©
+                    </span> <a href="#" class="">CloudBOX</a>.
                 </div>
             </div>
         </div>
     </footer>
     <!-- Backend Bundle JavaScript -->
     <script src="assets/js/backend-bundle.min.js"></script>
-    
+
     <!-- Chart Custom JavaScript -->
     <script src="assets/js/customizer.js"></script>
-    
+
     <!-- Chart Custom JavaScript -->
     <script src="assets/js/chart-custom.js"></script>
-    
+
     <!--PDF-->
     <script src="assets/vendor/doc-viewer/include/pdf/pdf.js"></script>
     <!--Docs-->
@@ -428,12 +424,12 @@
     <script src="assets/js/doc-viewer.js"></script>
     <!-- app JavaScript -->
     <script src="assets/js/app.js"></script>
-     <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title">Title</h4>
+                    <h4 class="modal-title">Title</h4>
                     <div>
                         <a class="btn" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -448,5 +444,6 @@
             </div>
         </div>
     </div>
-  </body>
+</body>
+
 </html>

@@ -18,4 +18,6 @@ class Register extends BaseController
         $RegisterModel->register($post);
 
     }
+
+    
 }
