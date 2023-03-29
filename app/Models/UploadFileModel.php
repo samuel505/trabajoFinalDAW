@@ -16,6 +16,7 @@ class UploadFileModel extends Model
 
     function uploadFile($archivo, $filecode,$type,$route)
     {
+        //var_dump($archivo->getSize());die(); 
        
         $today = date('Y-m-d', strtotime('today'));
         $data = [

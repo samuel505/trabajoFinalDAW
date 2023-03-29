@@ -13,11 +13,11 @@ class Register extends BaseController
     {
         $RegisterModel = new \App\Models\UsuarioSistemaModel();
         $request = service('request');
-        
+
         $post = $request->getPost();
-        $RegisterModel->register($post);
-
+        $result = $RegisterModel->register($post);
+        if ($result) {
+            header("location: /login");
+        }
     }
-
-    
 }

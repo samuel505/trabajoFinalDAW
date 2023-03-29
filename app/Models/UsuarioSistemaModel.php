@@ -33,6 +33,6 @@ class UsuarioSistemaModel extends Model
             'apellidos' => $post['apellidos']
         ];
 
-        $result = $this->insert($datos);
+       return $result = $this->insert($datos);
     }
 }

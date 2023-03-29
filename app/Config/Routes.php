@@ -45,6 +45,8 @@ if (!session()->has('id_usuario')) {
     $routes->get('/logout', 'Login::logout');
     $routes->get('/', 'Home::index');
     $routes->post('/uploadFile', 'UploadFile::subir');
+    $routes->get('file/(:any)', 'DownloadController::downloadFile/$1');
+
 }
 $routes->get('/register', 'Register::index');
 $routes->post('/register', 'Register::register');
