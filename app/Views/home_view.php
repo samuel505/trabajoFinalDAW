@@ -34,13 +34,16 @@
                     </div>
                     <div class="iq-search-bar device-search">
                         <form>
+
                             <div class="input-prepend input-append">
                                 <div class="btn-group">
+
                                     <label class="dropdown-toggle searchbox" data-toggle="dropdown">
                                         <input class="dropdown-toggle search-query text search-input" type="text" placeholder="Type here to search..."><span class="search-replace"></span>
                                         <a class="search-link" href="#"><i class="ri-search-line"></i></a>
                                         <span class="caret"><!--icon--></span>
                                     </label>
+
                                     <ul class="dropdown-menu">
                                         <li><a href="#">
                                                 <div class="item"><i class="far fa-file-pdf bg-info"></i>PDFs</div>
@@ -103,22 +106,6 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="nav-item nav-icon dropdown">
-                                    <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="ri-settings-3-line"></i>
-                                    </a>
-                                    <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton02">
-                                        <div class="card shadow-none m-0">
-                                            <div class="card-body p-0 ">
-                                                <div class="p-3">
-                                                    <a href="#" class="iq-sub-card pt-0"><i class="ri-settings-3-line"></i> Settings</a>
-                                                    <a href="#" class="iq-sub-card"><i class="ri-hard-drive-line"></i> Get Drive for desktop</a>
-                                                    <a href="#" class="iq-sub-card"><i class="ri-keyboard-line"></i> Keyboard Shortcuts</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
                                 <li class="nav-item nav-icon dropdown caption-content">
                                     <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <div class="caption bg-primary line-height">P</div>
@@ -165,6 +152,17 @@
                     </div>
                 </div>
                 <div class="icon icon-grid i-grid">
+                    <?php if (isset($errores)) { ?>
+                        <?php if (empty($errores)) { ?>
+                            <div class="alert alert-primary" role="alert">
+                                <div class="iq-alert-text"><?php header("location: /") ?></div>
+                            </div>
+                        <?php } else { ?>
+                            <div class="alert alert-danger" role="alert">
+                                <div class="iq-alert-text"> <?= $errores ?></div>
+                            </div>
+                        <?php } ?>
+                    <?php } ?>
                     <div class="row" id="archivos">
                         <?php foreach ($archivos as $archivo) { ?>
 
@@ -173,11 +171,11 @@
                                     <div class="card-body image-thumb">
                                         <div class="mb-2 text-center p-3 rounded iq-thumb">
                                             <div class="iq-image-overlay "></div>
-                                            <a href="#" data-title="<?php $archivo['filecode'] ?>" data-load-file="file" data-load-target="#resolte-contaniner" data-url="<?= base_url() . "/file/" . $archivo['filecode'] ?>.jpg" data-toggle="modal" data-target="#exampleModal"><img src="assets/images/layouts/page-7/pdf.png" class="img-fluid" alt="image1"></a>
+                                            <a href="#" data-title="<?php $archivo['filecode'] ?>" data-load-file="file" data-load-target="#resolte-contaniner" data-url="<?= base_url() . "/file/" . $archivo['filecode'] . "." . $archivo['type'] ?>" data-toggle="modal" data-target="#exampleModal"><img src="assets/images/layouts/page-7/pdf.png" class="img-fluid" alt="image1"></a>
                                         </div>
                                         <h6 class="text-center mb-2 font-weight-bold"><?= $archivo['nombre_archivo'] ?></h6>
                                         <div class="btn-group btn-group-toggle btn-group-flat">
-                                            <a class="button btn button-icon bg-primary" target="_blank" href="<?= base_url() . "file/" . $archivo['filecode'] ?>.jpg">Descargar archivo</a>
+                                            <a class="button btn button-icon bg-primary" target="_blank" href="<?= base_url() . "file/" . $archivo['filecode'] . "." . $archivo['type'] ?>">Descargar archivo</a>
                                             <button class="button btn button-icon bg-primary" id="<?php $archivo['filecode'] ?>" onclick="copiarEnlace(this)">Copiar enlace</button>
                                         </div>
                                     </div>
@@ -190,20 +188,21 @@
         </div>
     </div>
     <script>
+        // por hacer: mostar un mensaje de copiado, hacer un contador y quitar el mensaje
         function copiarEnlace(boton) {
             let enlace = boton.previousElementSibling.href
             navigator.clipboard.writeText(enlace)
                 .then(function() {
-                    console.log('Enlace copiado al portapapeles');
+
+                    alert('Enlace copiado al portapapeles');
                 }, function() {
-                    console.error('Error al copiar el enlace');
+                    alert('Error al copiar el enlace');
                 });
         }
     </script>
     <!-- Wrapper End-->
 
     <script>
-
         /*
         EN PRUEBAS
 

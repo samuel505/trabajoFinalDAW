@@ -43,7 +43,30 @@
                                 const xhr = new XMLHttpRequest();
                                 xhr.onreadystatechange = function() {
                                     if (xhr.readyState === 4 && xhr.status === 200) {
-                                        console.log(xhr.responseText);
+                                        let respuesta = xhr.responseText;
+                                        let array = JSON.parse(respuesta);
+                                       let URLactual = window.location.origin;
+
+                                        let string = "";
+                                        for (let i = 0; i < array.length; i++) {
+                                            let archivo = array[i];
+                                            string+=`<div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-block card-stretch card-height">
+                                    <div class="card-body image-thumb">
+                                        <div class="mb-2 text-center p-3 rounded iq-thumb">
+                                            <div class="iq-image-overlay "></div>
+                                            <a href="#" data-title="${URLactual}/${archivo['filecode']}" data-load-file="file" data-load-target="#resolte-contaniner" data-url="/file/"${archivo['filecode']}.${archivo['type']}" data-toggle="modal" data-target="#exampleModal"><img src="assets/images/layouts/page-7/pdf.png" class="img-fluid" alt="image1"></a>
+                                        </div>
+                                        <h6 class="text-center mb-2 font-weight-bold"> ${archivo['nombre_archivo']}</h6>
+                                        <div class="btn-group btn-group-toggle btn-group-flat">
+                                            <a class="button btn button-icon bg-primary" target="_blank" href="${URLactual}/file/${archivo['filecode']}${archivo['type']}">Descargar archivo</a>
+                                            <button class="button btn button-icon bg-primary" id="${archivo['filecode']}" onclick="copiarEnlace(this)">Copiar enlace</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`
+                                        }
+archivos.innerHTML=string;
                                     }
                                 };
                                 xhr.open('POST', '/uploadFile', true);
@@ -85,12 +108,12 @@
         </nav>
         <div class="sidebar-bottom">
             <h4 class="mb-3"><i class="las la-cloud mr-2"></i>Storage</h4>
-            <p>17.1 / 20 GB Used</p>
+            <p><?= $OccupiedSize  ?>/<?= $TotalSize ?> GB Used</p>
             <div class="iq-progress-bar mb-3">
-                <span class="bg-primary iq-progress progress-1" style="width: 75%;">
+                <span class="bg-primary iq-progress progress-1" style="width: <?= (100 - (($TotalSize - $OccupiedSize) / $TotalSize) * 100) ?>%;">
                 </span>
             </div>
-            <p>75% Full - 3.9 GB Free</p>
+            <p><?= (100 - (($TotalSize - $OccupiedSize) / $TotalSize) * 100) ?>% Full - <?= $TotalSize - $OccupiedSize ?> GB Free</p>
             <a href="#" class="btn btn-outline-primary view-more mt-4">Buy Storage</a>
         </div>
         <div class="p-3"></div>
