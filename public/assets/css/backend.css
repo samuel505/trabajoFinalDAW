@@ -14747,7 +14747,8 @@ h1 {
   margin: 0px;
   line-height: 1;
   color: #303030;
-  font-size: 2.488rem; }
+  font-size: 2.488rem; 
+  max-width: 100%;}
   h1 a {
     color: inherit; }
 
@@ -14757,7 +14758,8 @@ h2 {
   margin: 0px;
   line-height: 1.5;
   color: #303030;
-  font-size: 2.074rem; }
+  font-size: 2.074rem; 
+  max-width: 100%;}
   h2 a {
     color: inherit; }
 
@@ -14767,8 +14769,9 @@ h3 {
   margin: 0px;
   line-height: 1.5;
   color: #303030;
-  font-size: 1.728rem a;
-    font-size-color: inherit; }
+  font-size: 1.728rem;
+    color: inherit; 
+    max-width: 100%;}
 
 h4 {
   font-family: "Poppins", sans-serif;
@@ -14776,7 +14779,8 @@ h4 {
   margin: 0px;
   line-height: 1;
   color: #303030;
-  font-size: 1.44rem; }
+  font-size: 1.44rem; 
+  max-width: 100%;}
   h4 a {
     color: inherit; }
 
@@ -14786,7 +14790,8 @@ h5 {
   margin: 0px;
   line-height: 1.5;
   color: #303030;
-  font-size: 1.2rem; }
+  font-size: 1.2rem;
+  max-width: 100%; }
   h5 a {
     color: inherit; }
 
@@ -14796,7 +14801,9 @@ h6 {
   margin: 0px;
   line-height: 1.5;
   color: #303030;
-  font-size: 1rem; }
+  font-size: 1rem; 
+  max-width: 100%;
+}
   h6 a {
     color: inherit; }
 
@@ -16872,3 +16879,4 @@ ul.iq-contact-rest li a p {
 
 .icon.i-list {
   display: block; }
+

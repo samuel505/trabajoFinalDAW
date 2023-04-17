@@ -39,17 +39,41 @@ if (!session()->has('id_usuario')) {
         die();
     }
 
-    $routes->get('/login', 'Login::index');
-    $routes->post('/login', 'Login::login');
+    $routes->get('/login', 'LoginController::index');
+    $routes->post('/login', 'LoginController::login');
+    $routes->get('/register', 'Register::index');
+    $routes->post('/register', 'Register::register');
 } else {
-    $routes->get('/logout', 'Login::logout');
-    $routes->get('/', 'Home::index');
-    $routes->post('/uploadFile', 'UploadFile::subir');
+    $routes->get('/logout', 'LoginController::logout');
+    $routes->get('/', 'HomeController::index');
+
+    $routes->get('/papelera', 'PapeleraController::index');
+    
+    $routes->post('/verificarEspacioDisponible', 'UploadFileController::espacioDisponble');
+    $routes->post('/verificarLimite', 'UploadFileController::getLimit');
+
+    $routes->post('/uploadFile', 'UploadFileController::subir');
     $routes->get('file/(:any)', 'DownloadController::downloadFile/$1');
 
+    $routes->post('deleteFile', 'DeleteFileController::borrar');
+    $routes->post('recoverFile', 'DeleteFileController::restaurar');
+    //$routes->post('recoverAllFile', 'DeleteFileController::restaurar');
+    
+    $routes->post('permanentDelete', 'DeleteFileController::borradoPermanente');
+    $routes->post('permanentDeleteAll', 'DeleteFileController::borradoPermanenteAll');
+
+
 }
-$routes->get('/register', 'Register::index');
-$routes->post('/register', 'Register::register');
+
+
+$routes->get('/testTotalSizeUser', 'TestController::TotalSizeUser');
+$routes->get('/testMaxSizeUser', 'TestController::MaxSizeUser');
+
+$routes->post('/testPost', 'TestController::Post');
+
+
+
+
 
 /*
  * --------------------------------------------------------------------
