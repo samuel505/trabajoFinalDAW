@@ -2,7 +2,7 @@
     function checkDisponible(array) {
         // Obtener el tamaño del archivo que se va a subir
         let fileSize = 0;
-        //console.log(array);
+        //
         for (let i = 0; i < array.length; i++) {
             fileSize += array[i].size;
         }

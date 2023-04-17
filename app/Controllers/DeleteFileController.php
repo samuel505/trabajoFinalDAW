@@ -41,6 +41,8 @@ class DeleteFileController extends BaseController
         $fileModel = new FileModel();
 
         $filecode = $this->request->getPost('filecode');
+        $file = $fileModel->getFile($filecode);
+        rename("trash/" . $file[0]["filecode"] . "." . $file[0]["type"],$file[0]['ruta_local']);
 
         $result =  $fileModel->recoverFile($filecode, session()->get('id_usuario'));
 

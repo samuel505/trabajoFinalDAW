@@ -103,12 +103,12 @@
                 },
                 success: function(array) {
                     array1 = array['archivos'];
-                    console.log(array);
+                    
                     let URLactual = window.location.origin;
 
                     let string = "";
                     if (typeof(array1) !== 'undefined') {
-                        console.log("SI");
+                      
                         for (let i = 0; i < array1.length; i++) {
                             let archivo = array1[i];
 
@@ -165,13 +165,13 @@
                         "filecode": filecode
                     },
                     success: function(array) {
-                        console.log(array);
+                        
                         array1 = array['archivos'];
                         let URLactual = window.location.origin;
 
                         let string = "";
                         if (typeof(array1) !== 'undefined') {
-                            console.log("SI");
+                            
                             for (let i = 0; i < array1.length; i++) {
                                 let archivo = array1[i];
 
@@ -234,7 +234,7 @@
                     dataType: 'json',
 
                     success: function(array) {
-                        console.log(array);
+                        
 
 
                         array1 = array['archivos'];
