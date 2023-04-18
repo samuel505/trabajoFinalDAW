@@ -160,7 +160,7 @@
                 }
             }).fail(function(array) {
                 let respuesta = array.responseText;
-                console.log(respuesta);
+                alert(respuesta);
             });
 
         }

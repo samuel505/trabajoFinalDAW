@@ -101,7 +101,7 @@
                                                             <a href=""></a>
                                                         </div>
                                                         <div class="profile-detail mt-3">
-                                                            <h5><a href="">Usuario</a></h5>
+                                                            <h5><a href="/perfil">Usuario</a></h5>
                                                             <p>Usuario@gmail.com</p>
                                                         </div>
                                                         <a href="/logout" class="btn btn-primary">Cerrar sesion</a>

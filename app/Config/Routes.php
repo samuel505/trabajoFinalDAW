@@ -62,6 +62,7 @@ if (!session()->has('id_usuario')) {
     $routes->post('permanentDelete', 'DeleteFileController::borradoPermanente');
     $routes->post('permanentDeleteAll', 'DeleteFileController::borradoPermanenteAll');
 
+    $routes->get('perfil', 'PerfilUsuarioController::index');
 
 }
 
