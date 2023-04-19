@@ -48,7 +48,7 @@ if (!session()->has('id_usuario')) {
     $routes->get('/', 'HomeController::index');
 
     $routes->get('/papelera', 'PapeleraController::index');
-    
+
     $routes->post('/verificarEspacioDisponible', 'UploadFileController::espacioDisponble');
     $routes->post('/verificarLimite', 'UploadFileController::getLimit');
 
@@ -58,12 +58,12 @@ if (!session()->has('id_usuario')) {
     $routes->post('deleteFile', 'DeleteFileController::borrar');
     $routes->post('recoverFile', 'DeleteFileController::restaurar');
     //$routes->post('recoverAllFile', 'DeleteFileController::restaurar');
-    
+
     $routes->post('permanentDelete', 'DeleteFileController::borradoPermanente');
     $routes->post('permanentDeleteAll', 'DeleteFileController::borradoPermanenteAll');
 
     $routes->get('perfil', 'PerfilUsuarioController::index');
-
+    $routes->post('editUsuario', 'PerfilUsuarioController::editUsuario');
 }
 
 
