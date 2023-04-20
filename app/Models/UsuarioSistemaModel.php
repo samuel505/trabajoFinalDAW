@@ -8,7 +8,7 @@ class UsuarioSistemaModel extends Model
 {
     protected $table = "usuarios";
     protected $primaryKey = "id_usuario";
-    protected $allowedFields = ['email', 'password', 'name', 'apellidos', 'pais', 'genero', 'fecha_nacimiento', 'image', 'id_plan'];
+    protected $allowedFields = ['email', 'password', 'nombre', 'apellidos', 'pais', 'genero', 'fecha_nacimiento', 'image', 'id_plan'];
 
 
     function login($post)
@@ -54,12 +54,20 @@ class UsuarioSistemaModel extends Model
         $r->set('nombre', $data['nombre']);
         $r->set('apellidos', $data['apellidos']);
         $r->set('email', $data['email']);
-        $r->set('genero', isset($data['genero']) ? $data['genero'] : NULL);
-        $r->set('pais', isset($data['pais']) ? $data['pais'] : NULL);
-        $r->set('fecha_nacimiento', isset($data['fecha_nacimiento']) ? $data['fecha_nacimiento'] : NULL);
-        $r->set('image', isset($data['image']) ? $data['image'] : NULL);
-
-
+        
+        if (isset($data['genero']) && !empty($data['genero'])) {
+            $r->set('genero', $data['genero']);
+        }
+        if (isset($data['fecha_nacimiento']) && !empty($data['fecha_nacimiento'])) {
+            $r->set('fecha_nacimiento', $data['fecha_nacimiento']);
+        }
+        if (isset($data['image']) && !empty($data['image'])) {
+            $r->set('image', $data['image']);
+        }
         return $r->where('id_usuario', $id)->update();
+    }
+
+    function FunctionName()
+    {
     }
 }

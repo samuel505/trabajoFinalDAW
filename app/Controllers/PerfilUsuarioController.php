@@ -28,11 +28,11 @@ class PerfilUsuarioController  extends BaseController
         $r = $this->request->getPost();
         $usuarioModel = new UsuarioSistemaModel();
 
-        $data['usuario'] = $usuarioModel->getUsuario(session()->get("id_usuario"));
+        
 
         $image = $this->request->getFile('image');
         $data['errores'] = $this->checkForm($r);
-        
+
         if (count($data['errores']) == 0) {
             $filecode = uniqid();
 
@@ -41,7 +41,7 @@ class PerfilUsuarioController  extends BaseController
 
                 $name = $image->getClientName();
 
-                
+
 
                 $type = pathinfo($route . $name, PATHINFO_EXTENSION);
 
@@ -57,8 +57,9 @@ class PerfilUsuarioController  extends BaseController
 
         if ($result) {
             http_response_code(200);
+            $data['usuario'] = $usuarioModel->getUsuario(session()->get("id_usuario"));
 
-            echo json_encode($result);
+            echo json_encode($data);
         } else {
             http_response_code(400);
 
@@ -104,7 +105,8 @@ class PerfilUsuarioController  extends BaseController
         }
 
         if (isset($data['fecha_nacimiento']) && !empty($data['fecha_nacimiento'])) {
-            $fecha = implode("/", $data['fecha_nacimiento']);
+            $fecha = explode("-", $data['fecha_nacimiento']);
+
             if (!checkdate($fecha[1], $fecha[2], $fecha[0])) {
                 $errores['fecha_nacimiento'] = "formato erroneo";
             }

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\FileModel;
+use App\Models\UsuarioSistemaModel;
 
 class HomeController extends BaseController
 {
@@ -13,16 +14,19 @@ class HomeController extends BaseController
         $data['archivos'] = [];
 
         $fileModel = new FileModel();
+        $usuarioModel = new UsuarioSistemaModel();
+        $result = $usuarioModel->getUsuario(session()->get("id_usuario"));
+        $result2 = $fileModel->getArchivos(session()->get("id_usuario"));
 
-        $result = $fileModel->getArchivos(session()->get("id_usuario"));
-        if ($result !== false) {
-            $data['archivos'] = $result;
+        if ($result2 !== false) {
+            $data['archivos'] = $result2;
         }
 
         $data['OccupiedSize'] = $this->getSize();
 
         $data['TotalSize'] = $this->getTotal();
 
+        $data['usuario'] = $result;
 
         return view('home_view', $data);
     }

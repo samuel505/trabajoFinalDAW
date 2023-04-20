@@ -66,11 +66,11 @@
                                                                         $user = "assets/images/user/2.jpg";
                                                                     }
                                                                 } else {
-                                                                    $user = "assets/images/user/1.jpg";
+                                                                    $user = $usuario['image'];
                                                                 }
 
                                                                 ?>
-                                                                <img class="crm-profile-pic rounded-circle avatar-100" src="<?= $user ?>" alt="profile-pic">
+                                                                <img class="crm-profile-pic rounded-circle avatar-100" src="<?= $user ?>" alt="profile-pic" id="profileImage">
                                                                 <div class="crm-p-image bg-primary">
                                                                     <i class="las la-pen upload-button"></i>
                                                                     <input class="file-upload" type="file" accept="image/*" name="image">
@@ -148,8 +148,11 @@
                                            
                                             xhr.onload = function() {
                                                 if (xhr.status === 200) {
-                                                    console.log(xhr.response);
-
+                                                 let result= JSON.parse(xhr.responseText);
+                                                 img = result.usuario.image
+                                                profileImage.src=img;
+                                                   
+                                                    
                                                 }else{
                                                     console.log(xhr.response);
                                                 }
