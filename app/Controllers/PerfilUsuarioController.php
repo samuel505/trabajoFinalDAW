@@ -27,17 +27,13 @@ class PerfilUsuarioController  extends BaseController
         $data = [];
         $r = $this->request->getPost();
         $usuarioModel = new UsuarioSistemaModel();
-      
+
         $data['usuario'] = $usuarioModel->getUsuario(session()->get("id_usuario"));
-
-        $image =  $this->request->getFile("image");
-        
-        echo json_encode($image);
-        exit;
-
-        if (count($this->checkForm($r)) == 0) {
+     
+        $image = $this->request->getFile('archivo');
+$data['errores']=$this->checkForm($r);
+        if (count($data['errores']) == 0) {
             $filecode = uniqid();
-            
 
             if ($image->isValid() && !$image->hasMoved()) {
                 $route = "profiles/";
@@ -48,7 +44,7 @@ class PerfilUsuarioController  extends BaseController
 
                 $image->move('profiles', $filecode . "." . $type);
 
-                $r['image'] = $filecode . "." . $type;
+                $r['image'] = $route.$filecode . "." . $type;
             }
 
             $result = $usuarioModel->editUsuario(session()->get("id_usuario"), $r);
@@ -63,8 +59,7 @@ class PerfilUsuarioController  extends BaseController
         } else {
             http_response_code(400);
 
-            $data['usuario'] = $result;
-            echo json_encode("no");
+            echo json_encode($data['errores']);
         }
         exit;
     }

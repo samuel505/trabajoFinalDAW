@@ -53,7 +53,7 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <form id="editUsuario">
+                                            <form id="editUsuarioForm">
                                                 <div class="form-group row align-items-center">
                                                     <div class="col-md-12">
                                                         <div class="profile-img-edit">
@@ -73,7 +73,7 @@
                                                                 <img class="crm-profile-pic rounded-circle avatar-100" src="<?= $user ?>" alt="profile-pic">
                                                                 <div class="crm-p-image bg-primary">
                                                                     <i class="las la-pen upload-button"></i>
-                                                                    <input class="file-upload" type="file" accept="image/*" name="image">
+                                                                    <input class="file-upload" type="file" accept="image/*" name="archivo">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -135,58 +135,67 @@
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mr-2">Actualizar</button>
                                             </form>
-                                            <script>
-                                                const form = document.getElementById('myForm');
-                                                const formData = new FormData(form);
-
-                                                fetch('/editUsuario', {
-                                                        method: 'POST',
-                                                        body: formData
-                                                    })
-                                                    .then(response => response.json())
-                                                    .then(data => {
-                                                        console.log(data);
-                                                    })
-                                                    .catch(error => console.error(error));
-                                            </script>
                                         </div>
                                     </div>
+                                    <button type="submit" class="btn btn-primary mr-2">Actualizar</button>
+                                    </form>
+                                    <script>
+                                        var form = document.getElementById('editUsuarioForm');
+                                        form.addEventListener('submit', function(event) {
+                                            event.preventDefault();
+                                            var formData = new FormData(form);
+                                            var xhr = new XMLHttpRequest();
+                                            xhr.open('POST', '/editUsuario', true);
+                                           
+                                            xhr.onload = function() {
+                                                if (xhr.status === 200) {
+                                                    console.log(xhr.response);
+
+                                                }else{
+                                                    console.log(xhr.response);
+                                                }
+                                            };
+                                            xhr.send(formData);
+                                        });
+                                    </script>
                                 </div>
-                                <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
-                                    <div class="card">
-                                        <div class="card-header d-flex justify-content-between">
-                                            <div class="iq-header-title">
-                                                <h4 class="card-title">Cambiar Contraseña</h4>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <form>
-                                                <div class="form-group">
-                                                    <label for="pass">Contraseña actual</label>
-
-                                                    <input type="Password" class="form-control" id="pass" value="">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="newPass">Nueva Contraseña</label>
-                                                    <input type="Password" class="form-control" id="newPass" value="" name="newPass">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="newPass2">Confirma Contraseña</label>
-                                                    <input type="Password" class="form-control" id="newPass2" value="">
-                                                </div>
-                                                <button type="submit" class="btn btn-primary mr-2">Actualizar</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between">
+                                    <div class="iq-header-title">
+                                        <h4 class="card-title">Cambiar Contraseña</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="pass">Contraseña actual</label>
+
+                                            <input type="Password" class="form-control" id="pass" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="newPass">Nueva Contraseña</label>
+                                            <input type="Password" class="form-control" id="newPass" value="" name="newPass">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="newPass2">Confirma Contraseña</label>
+                                            <input type="Password" class="form-control" id="newPass2" value="">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mr-2" id="actualizarPass">Actualizar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <!-- Wrapper End-->
 
