@@ -29,9 +29,10 @@ class PerfilUsuarioController  extends BaseController
         $usuarioModel = new UsuarioSistemaModel();
 
         $data['usuario'] = $usuarioModel->getUsuario(session()->get("id_usuario"));
-     
-        $image = $this->request->getFile('archivo');
-$data['errores']=$this->checkForm($r);
+
+        $image = $this->request->getFile('image');
+        $data['errores'] = $this->checkForm($r);
+        
         if (count($data['errores']) == 0) {
             $filecode = uniqid();
 
@@ -40,11 +41,13 @@ $data['errores']=$this->checkForm($r);
 
                 $name = $image->getClientName();
 
+                
+
                 $type = pathinfo($route . $name, PATHINFO_EXTENSION);
 
                 $image->move('profiles', $filecode . "." . $type);
 
-                $r['image'] = $route.$filecode . "." . $type;
+                $r['image'] = $route . $filecode . "." . $type;
             }
 
             $result = $usuarioModel->editUsuario(session()->get("id_usuario"), $r);

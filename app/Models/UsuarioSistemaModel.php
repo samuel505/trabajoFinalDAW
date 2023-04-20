@@ -49,7 +49,7 @@ class UsuarioSistemaModel extends Model
 
     function editUsuario($id, $data)
     {
-        $error = false;
+
         $r = $this->table('usuarios');
         $r->set('nombre', $data['nombre']);
         $r->set('apellidos', $data['apellidos']);
@@ -59,7 +59,7 @@ class UsuarioSistemaModel extends Model
         $r->set('fecha_nacimiento', isset($data['fecha_nacimiento']) ? $data['fecha_nacimiento'] : NULL);
         $r->set('image', isset($data['image']) ? $data['image'] : NULL);
 
-return $data;
+
         return $r->where('id_usuario', $id)->update();
     }
 }

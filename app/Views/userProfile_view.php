@@ -73,7 +73,7 @@
                                                                 <img class="crm-profile-pic rounded-circle avatar-100" src="<?= $user ?>" alt="profile-pic">
                                                                 <div class="crm-p-image bg-primary">
                                                                     <i class="las la-pen upload-button"></i>
-                                                                    <input class="file-upload" type="file" accept="image/*" name="archivo">
+                                                                    <input class="file-upload" type="file" accept="image/*" name="image">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -137,8 +137,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mr-2">Actualizar</button>
-                                    </form>
+                                    
                                     <script>
                                         var form = document.getElementById('editUsuarioForm');
                                         form.addEventListener('submit', function(event) {
