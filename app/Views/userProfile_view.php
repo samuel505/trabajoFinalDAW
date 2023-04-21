@@ -137,7 +137,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                    
+
                                     <script>
                                         var form = document.getElementById('editUsuarioForm');
                                         form.addEventListener('submit', function(event) {
@@ -145,15 +145,15 @@
                                             var formData = new FormData(form);
                                             var xhr = new XMLHttpRequest();
                                             xhr.open('POST', '/editUsuario', true);
-                                           
+
                                             xhr.onload = function() {
                                                 if (xhr.status === 200) {
-                                                 let result= JSON.parse(xhr.responseText);
-                                                 img = result.usuario.image
-                                                profileImage.src=img;
-                                                   
-                                                    
-                                                }else{
+                                                    let result = JSON.parse(xhr.responseText);
+                                                    img = result.usuario.image
+                                                    profileImage.src = img;
+
+
+                                                } else {
                                                     console.log(xhr.response);
                                                 }
                                             };
@@ -161,44 +161,41 @@
                                         });
                                     </script>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
-                            <div class="card">
-                                <div class="card-header d-flex justify-content-between">
-                                    <div class="iq-header-title">
-                                        <h4 class="card-title">Cambiar Contraseña</h4>
+                                <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
+                                    <div class="card">
+                                        <div class="card-header d-flex justify-content-between">
+                                            <div class="iq-header-title">
+                                                <h4 class="card-title">Cambiar Contraseña</h4>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="pass">Contraseña actual</label>
+
+                                                    <input type="Password" class="form-control" id="pass" value="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="newPass">Nueva Contraseña</label>
+                                                    <input type="Password" class="form-control" id="newPass" value="" name="newPass">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="newPass2">Confirma Contraseña</label>
+                                                    <input type="Password" class="form-control" id="newPass2" value="">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary mr-2" id="actualizarPass">Actualizar</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="pass">Contraseña actual</label>
-
-                                            <input type="Password" class="form-control" id="pass" value="">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="newPass">Nueva Contraseña</label>
-                                            <input type="Password" class="form-control" id="newPass" value="" name="newPass">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="newPass2">Confirma Contraseña</label>
-                                            <input type="Password" class="form-control" id="newPass2" value="">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary mr-2" id="actualizarPass">Actualizar</button>
-                                    </form>
-                                </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    </div>
+
     <!-- Wrapper End-->
 
     <!-- Backend Bundle JavaScript -->
