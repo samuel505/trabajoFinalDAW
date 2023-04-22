@@ -73,6 +73,7 @@ class HomeController extends BaseController
     {
         $fileModel = new fileModel();
         $result =  $fileModel->getTotalSize(session()->get('id_usuario'));
+       
         $size = $result['almacenamiento'];
         if ($size !== null) {
 

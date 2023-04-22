@@ -28,7 +28,7 @@ class PerfilUsuarioController  extends BaseController
         $r = $this->request->getPost();
         $usuarioModel = new UsuarioSistemaModel();
 
-        
+
 
         $image = $this->request->getFile('image');
         $data['errores'] = $this->checkForm($r);
@@ -40,8 +40,6 @@ class PerfilUsuarioController  extends BaseController
                 $route = "profiles/";
 
                 $name = $image->getClientName();
-
-
 
                 $type = pathinfo($route . $name, PATHINFO_EXTENSION);
 
@@ -68,28 +66,87 @@ class PerfilUsuarioController  extends BaseController
         exit;
     }
 
+    function editPassword()
+    {
+        $data = [];
+
+        $usuarioModel = new UsuarioSistemaModel();
+        $result = $usuarioModel->getUsuario(session()->get("id_usuario"));
+        $pass = $this->request->getPost();
+
+        if (password_verify($pass['pass'], $result['password'])) {
+
+
+            $data['errores'] = $this->checkFormPassword($pass);
+
+
+            if (count($data['errores']) == 0) {
+                if ($usuarioModel->editPasswordUsuario(session()->get("id_usuario"), $pass)) {
+                    http_response_code(200);
+                    echo json_encode(true);
+                } else {
+                    http_response_code(400);
+                    $data['errores'] = "error al actualizar la contraseña";
+                    echo json_encode($data['errores']);
+                }
+            } else {
+                http_response_code(400);
+                echo json_encode($data['errores']);
+            }
+        } else {
+            http_response_code(400);
+            $errores['password'] = "La contraseña actual introducida no es correcta";
+            $data['errores'] = $errores;
+            echo json_encode($data['errores']);
+        }
+        exit;
+    }
+
+    function checkFormPassword($data)
+    {
+
+        $errores = [];
+        if (empty($data['newPass'])) {
+            $errores['password'] = "La contraseña actual no puede estar vacia";
+        } else
+        if (is_numeric(strpos(" ", $data['newPass']))) {
+            $errores['password'] = "Formato de contraseña no valido, solo son validos: (letras, numeros y caracteres especiales";
+        } else 
+        if ($data['newPass'] !== $data['newPass2']) {
+            $errores['password'] = "introduzca la nueva contraseña y la confirmacion deben ser la misma";
+        }
+
+        return $errores;
+    }
+
+
+
     function checkForm($data)
     {
         $errores = [];
 
-        if (!isset($data['nombre']) || empty($data['nombre'])) {
+        if (isset($data['nombre']) || empty($data['nombre'])) {
             if (!preg_match("/[A-Za-z ]+/", $data['nombre'])) {
-                $errores['nombre'] = "Campo obligatorio";
+                $errores['nombre'] = "El nombre solo puede contener letras y espacios";
             }
-        }
-
-        if (!isset($data['apellidos']) || empty($data['apellidos'])) {
-            if (!preg_match("/[A-Za-z ]+/", $data['nombre'])) {
-                $errores['apellidos'] = "Campo obligatorio";
-            }
-        }
-
-        if (!isset($data['email']) || empty($data['email'])) {
-            $errores['email'] = "Campo obligatorio";
         } else {
+            $errores['nombre'] = "El campo del nombre es obligatorio";
+        }
+
+        if (isset($data['apellidos']) || empty($data['apellidos'])) {
+            if (!preg_match("/[A-Za-z ]+/", $data['apellidos'])) {
+                $errores['apellidos'] = "Los apellidos solo puede contener letras y espacios";
+            }
+        } else {
+            $errores['apellidos'] = "El campo del los apellidos obligatorio";
+        }
+
+        if (isset($data['email']) || empty($data['email'])) {
             if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
                 $errores['email'] = "Inserte un correo electronico valido";
             }
+        } else {
+            $errores['email'] = "El campo de correo electronico es obligatorio";
         }
 
         if (isset($data['genero']) || !empty($data['genero'])) {
@@ -100,7 +157,7 @@ class PerfilUsuarioController  extends BaseController
 
         if (isset($data['pais']) && !empty($data['pais'])) {
             if (!preg_match("/[A-Z]{2}/", $data['pais'])) {
-                $errores['pais'] = "Campo erroneo";
+                $errores['pais'] = "Campo de pais erroneo";
             }
         }
 
@@ -108,7 +165,7 @@ class PerfilUsuarioController  extends BaseController
             $fecha = explode("-", $data['fecha_nacimiento']);
 
             if (!checkdate($fecha[1], $fecha[2], $fecha[0])) {
-                $errores['fecha_nacimiento'] = "formato erroneo";
+                $errores['fecha_nacimiento'] = "formato de fecha erroneo";
             }
         }
 

@@ -56,34 +56,36 @@
                     <?php } ?>
 
                     <div class="row" id="archivos">
-                        <?php foreach ($archivos as $key => $archivo) { ?>
+                        <?php  if (isset($archivos) && count($archivos) > 0) { ?>
+                            <?php foreach ($archivos as $key => $archivo) { ?>
 
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="card card-block card-stretch card-height">
-                                    <div class="card-body image-thumb">
-                                        <div class="mb-4 text-center p-3 rounded iq-thumb">
-                                            <img src="../assets/images/archivo.png" class="img-fluid">
-                                            <div class="iq-image-overlay"></div>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                            <h6><?= $archivo['nombre_archivo'] ?></h6>
-                                            <div class="card-header-toolbar">
-                                                <div class="dropdown">
-                                                    <span class="dropdown-toggle" id="dropdownMenuButton003" data-toggle="dropdown" aria-expanded="false">
-                                                        <i class="ri-more-2-fill"></i>
-                                                    </span>
-                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton003" style>
-                                                        <span hidden class="deleted"><?= $archivo['filecode'] ?></span>
-                                                        <button class="dropdown-item" onclick="recoverFile(this)"><i class="ri-restart-line mr-2"></i>Restaurar</button>
-                                                        <button class="dropdown-item" onclick="permanentDelete(this)"><i class="ri-delete-bin-6-fill mr-2"></i>Borrado permanente</button>
+                                <div class="col-lg-3 col-md-6 col-sm-6">
+                                    <div class="card card-block card-stretch card-height">
+                                        <div class="card-body image-thumb">
+                                            <div class="mb-4 text-center p-3 rounded iq-thumb">
+                                                <img src="../assets/images/archivo.png" class="img-fluid">
+                                                <div class="iq-image-overlay"></div>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <h6><?= $archivo['nombre_archivo'] ?></h6>
+                                                <div class="card-header-toolbar">
+                                                    <div class="dropdown">
+                                                        <span class="dropdown-toggle" id="dropdownMenuButton003" data-toggle="dropdown" aria-expanded="false">
+                                                            <i class="ri-more-2-fill"></i>
+                                                        </span>
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton003" style>
+                                                            <span hidden class="deleted"><?= $archivo['filecode'] ?></span>
+                                                            <button class="dropdown-item" onclick="recoverFile(this)"><i class="ri-restart-line mr-2"></i>Restaurar</button>
+                                                            <button class="dropdown-item" onclick="permanentDelete(this)"><i class="ri-delete-bin-6-fill mr-2"></i>Borrado permanente</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php  } ?>
+                            <?php  } ?>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -103,12 +105,12 @@
                 },
                 success: function(array) {
                     array1 = array['archivos'];
-                    
+
                     let URLactual = window.location.origin;
 
                     let string = "";
                     if (typeof(array1) !== 'undefined') {
-                      
+
                         for (let i = 0; i < array1.length; i++) {
                             let archivo = array1[i];
 
@@ -143,10 +145,10 @@
 
                     archivos.innerHTML = string;
                 }
-            }).fail( function(array){
-                let response = JSON.parse(array.responseText)   ; 
+            }).fail(function(array) {
+                let response = JSON.parse(array.responseText);
                 console.log(response);
-                });
+            });
 
         }
 
@@ -165,13 +167,13 @@
                         "filecode": filecode
                     },
                     success: function(array) {
-                        
+
                         array1 = array['archivos'];
                         let URLactual = window.location.origin;
 
                         let string = "";
                         if (typeof(array1) !== 'undefined') {
-                            
+
                             for (let i = 0; i < array1.length; i++) {
                                 let archivo = array1[i];
 
@@ -214,9 +216,9 @@
                         console.log(lMenu);
                         leftMenu.innerHTML = lMenu;
                     }
-                }).fail( function(array){
-                    let response = JSON.parse(array.responseText)   ; 
-                console.log(response);
+                }).fail(function(array) {
+                    let response = JSON.parse(array.responseText);
+                    console.log(response);
                 });
 
             }
@@ -235,7 +237,7 @@
                     dataType: 'json',
 
                     success: function(array) {
-                        
+
 
 
                         array1 = array['archivos'];
@@ -250,9 +252,9 @@
                         leftMenu.innerHTML = lMenu;
 
                     }
-                }).fail( function(array){
-                    let response = JSON.parse(array.responseText)   ; 
-                console.log(response);
+                }).fail(function(array) {
+                    let response = JSON.parse(array.responseText);
+                    console.log(response);
                 });
 
             }

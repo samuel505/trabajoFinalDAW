@@ -41,8 +41,8 @@ if (!session()->has('id_usuario')) {
 
     $routes->get('/login', 'LoginController::index');
     $routes->post('/login', 'LoginController::login');
-    $routes->get('/register', 'Register::index');
-    $routes->post('/register', 'Register::register');
+    $routes->get('/register', 'RegisterController::index');
+    $routes->post('/register', 'RegisterController::register');
 } else {
     $routes->get('/logout', 'LoginController::logout');
     $routes->get('/', 'HomeController::index');
@@ -64,6 +64,7 @@ if (!session()->has('id_usuario')) {
 
     $routes->get('perfil', 'PerfilUsuarioController::index');
     $routes->post('editUsuario', 'PerfilUsuarioController::editUsuario');
+    $routes->post('editPasswordUsuario', 'PerfilUsuarioController::editPassword');
 }
 
 

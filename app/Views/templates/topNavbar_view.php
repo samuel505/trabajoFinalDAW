@@ -1,4 +1,4 @@
-<div class="iq-top-navbar">
+<div class="iq-top-navbar" style="padding-top: 13px;">
             <div class="iq-navbar-custom">
                 <nav class="navbar navbar-expand-lg navbar-light p-0">
                     <div class="iq-navbar-logo d-flex align-items-center justify-content-between">

@@ -32,8 +32,11 @@ class UsuarioSistemaModel extends Model
             'nombre' => $post['nombre'],
             'apellidos' => $post['apellidos']
         ];
-
-        return $result = $this->insert($datos);
+        try {
+            return $result = $this->insert($datos);
+        } catch (\CodeIgniter\Database\Exceptions\DatabaseException $e) {
+            return false;
+        }
     }
 
 
@@ -41,7 +44,7 @@ class UsuarioSistemaModel extends Model
     {
         $result = $this->select("*")->where("id_usuario", $id)->get()->getResultArray();
         if (count($result) > 0) {
-            unset($result[0]['password']);
+
             return $result[0];
         }
         return false;
@@ -50,24 +53,26 @@ class UsuarioSistemaModel extends Model
     function editUsuario($id, $data)
     {
 
-        $r = $this->table('usuarios');
-        $r->set('nombre', $data['nombre']);
-        $r->set('apellidos', $data['apellidos']);
-        $r->set('email', $data['email']);
-        
+        $this->set('nombre', $data['nombre']);
+        $this->set('apellidos', $data['apellidos']);
+        $this->set('email', $data['email']);
+
         if (isset($data['genero']) && !empty($data['genero'])) {
-            $r->set('genero', $data['genero']);
+            $this->set('genero', $data['genero']);
         }
         if (isset($data['fecha_nacimiento']) && !empty($data['fecha_nacimiento'])) {
-            $r->set('fecha_nacimiento', $data['fecha_nacimiento']);
+            $this->set('fecha_nacimiento', $data['fecha_nacimiento']);
         }
         if (isset($data['image']) && !empty($data['image'])) {
-            $r->set('image', $data['image']);
+            $this->set('image', $data['image']);
         }
-        return $r->where('id_usuario', $id)->update();
+        return $this->where('id_usuario', $id)->update();
     }
 
-    function FunctionName()
+    function editPasswordUsuario($id, $data)
     {
+
+        $this->set('password', password_hash($data['newPass'], PASSWORD_DEFAULT));
+        return $this->where('id_usuario', $id)->update();
     }
 }

@@ -60,6 +60,7 @@
                         <?php } ?>
                     <?php } ?>
                     <div class="row" id="archivos">
+                        <?php  if (isset($archivos) && count($archivos) > 0) {?>
                         <?php foreach ($archivos as $key => $archivo) { ?>
 
                             <div class="col-lg-3 col-md-6 col-sm-6">
@@ -89,6 +90,7 @@
                                 </div>
                             </div>
                         <?php  } ?>
+                        <?php }?>
                     </div>
                 </div>
             </div>

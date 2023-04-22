@@ -43,6 +43,7 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
+
                         <div class="iq-edit-list-data">
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
@@ -83,14 +84,17 @@
                                                     <div class="form-group col-sm-6">
                                                         <label for="fname">Nombre</label>
                                                         <input type="text" class="form-control" id="fname" value="<?= $usuario['nombre'] ?>" name="nombre">
+                                                        <span class="text-danger"></span>
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label for="lname">Apellidos</label>
                                                         <input type="text" class="form-control" id="lname" value="<?= $usuario['apellidos'] ?>" name="apellidos">
+                                                        <span class="text-danger"></span>
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label for="email">Correo Electronico</label>
                                                         <input type="text" class="form-control" id="email" value="<?= $usuario['email'] ?>" name="email">
+                                                        <span class="text-danger"></span>
                                                     </div>
 
                                                     <div class="form-group col-sm-6">
@@ -151,10 +155,13 @@
                                                     let result = JSON.parse(xhr.responseText);
                                                     img = result.usuario.image
                                                     profileImage.src = img;
+                                                    alert("Usuario actualizado correctamente!");
+                                                    //document.getElementById("fname").nextSibling.innerHTML="SASS";
 
 
                                                 } else {
-                                                    console.log(xhr.response);
+                                                    let error = JSON.parse(xhr.response);
+                                                    //alert("Error al actualizar el usuario: "+error);
                                                 }
                                             };
                                             xhr.send(formData);
@@ -169,11 +176,11 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <form>
+                                            <form id="editPasswordUsuarioForm">
                                                 <div class="form-group">
                                                     <label for="pass">Contraseña actual</label>
 
-                                                    <input type="Password" class="form-control" id="pass" value="">
+                                                    <input type="Password" class="form-control" id="pass" value="" name="pass">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="newPass">Nueva Contraseña</label>
@@ -181,11 +188,41 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="newPass2">Confirma Contraseña</label>
-                                                    <input type="Password" class="form-control" id="newPass2" value="">
+                                                    <input type="Password" class="form-control" id="newPass2" value="" name="newPass2">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mr-2" id="actualizarPass">Actualizar</button>
                                             </form>
                                         </div>
+                                        <script>
+                                            // Seleccionar el formulario
+                                            var form = document.querySelector('#editPasswordUsuarioForm');
+
+                                            // Escuchar el evento submit del formulario
+                                            form.addEventListener('submit', function(e) {
+                                                // Prevenir el comportamiento por defecto del formulario (enviar por HTTP)
+                                                e.preventDefault();
+
+                                                // Obtener los datos del formulario
+                                                var formData = new FormData(form);
+
+                                                // Realizar la petición AJAX
+                                                var xhr = new XMLHttpRequest();
+                                                xhr.open('POST', 'editPasswordUsuario');
+                                                xhr.send(formData);
+
+                                                // Manejar la respuesta de la petición
+                                                xhr.onreadystatechange = function() {
+                                                    if (xhr.readyState === 4 && xhr.status === 200) {
+                                                        // La petición se ha completado y se ha recibido una respuesta exitosa
+                                                        console.log(xhr.responseText);
+
+                                                    } else if (xhr.readyState === 4 && xhr.status != 200) {
+                                                        console.log(xhr.responseText);
+
+                                                    }
+                                                }
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>

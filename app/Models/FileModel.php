@@ -18,7 +18,7 @@ class FileModel extends Model
         if (count($result) > 0) {
             return $result;
         }
-        return false;
+        return [];
     }
 
     function getArchivosPapelera($id)
@@ -28,7 +28,7 @@ class FileModel extends Model
         if (count($result) > 0) {
             return $result;
         }
-        return false;
+        return [];
     }
 
     function getOcupiedSize($id)
@@ -38,7 +38,7 @@ class FileModel extends Model
         if (!is_null($result[0]['totalSize'])) {
             return $result[0]['totalSize'];
         }
-        return false;
+        return 0;
     }
 
 
@@ -50,7 +50,7 @@ class FileModel extends Model
         if (count($result) > 0) {
             return $result[0];
         }
-        return false;
+        return [];
     }
 
     //mejorar
