@@ -36,6 +36,7 @@ class LoginController extends BaseController
             die();
         } else {
             $data['errores'] = $errorLogin = "Correo o contraseña erroneos";
+            $data['datos']=$post;
             return view('login_view', $data);
         }
     }

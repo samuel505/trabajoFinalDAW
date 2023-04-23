@@ -13,7 +13,6 @@ class PerfilUsuarioController  extends BaseController
         $usuarioModel = new UsuarioSistemaModel();
         $result = $usuarioModel->getUsuario(session()->get("id_usuario"));
 
-        // var_dump($result);die();
         $data['usuario'] = $result;
         $data['OccupiedSize'] = $fileSice->getSize();
         $data['input'] = [];
@@ -22,13 +21,12 @@ class PerfilUsuarioController  extends BaseController
         return view('userProfile_view', $data);
     }
 
+
     function editUsuario()
     {
         $data = [];
         $r = $this->request->getPost();
         $usuarioModel = new UsuarioSistemaModel();
-
-
 
         $image = $this->request->getFile('image');
         $data['errores'] = $this->checkForm($r);
@@ -106,11 +104,11 @@ class PerfilUsuarioController  extends BaseController
     {
 
         $errores = [];
-        if (empty($data['newPass'])) {
+        if (empty($data['pass'])) {
             $errores['password'] = "La contraseña actual no puede estar vacia";
         } else
-        if (is_numeric(strpos(" ", $data['newPass']))) {
-            $errores['password'] = "Formato de contraseña no valido, solo son validos: (letras, numeros y caracteres especiales";
+        if (empty($data['newPass']) || is_numeric(strpos(" ", $data['newPass']))) {
+            $errores['password'] = "Formato de la nueva contraseña no valido, tiene que estar formado (letras, numeros o caracteres especiales)";
         } else 
         if ($data['newPass'] !== $data['newPass2']) {
             $errores['password'] = "introduzca la nueva contraseña y la confirmacion deben ser la misma";
@@ -125,23 +123,23 @@ class PerfilUsuarioController  extends BaseController
     {
         $errores = [];
 
-        if (isset($data['nombre']) || empty($data['nombre'])) {
+        if (isset($data['nombre']) || !empty($data['nombre'])) {
             if (!preg_match("/[A-Za-z ]+/", $data['nombre'])) {
-                $errores['nombre'] = "El nombre solo puede contener letras y espacios";
+                $errores['nombre'] = "Nombre invalido";
             }
         } else {
             $errores['nombre'] = "El campo del nombre es obligatorio";
         }
 
-        if (isset($data['apellidos']) || empty($data['apellidos'])) {
+        if (isset($data['apellidos']) || !empty($data['apellidos'])) {
             if (!preg_match("/[A-Za-z ]+/", $data['apellidos'])) {
-                $errores['apellidos'] = "Los apellidos solo puede contener letras y espacios";
+                $errores['apellidos'] = "Apellido invalido";
             }
         } else {
-            $errores['apellidos'] = "El campo del los apellidos obligatorio";
+            $errores['apellidos'] = "El campo del los apellido obligatorio";
         }
 
-        if (isset($data['email']) || empty($data['email'])) {
+        if (isset($data['email']) || !empty($data['email'])) {
             if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
                 $errores['email'] = "Inserte un correo electronico valido";
             }

@@ -1,3 +1,4 @@
+
 <script>
     function checkDisponible(array) {
         // Obtener el tamaño del archivo que se va a subir
@@ -284,3 +285,4 @@
 
     }
 </script>
+

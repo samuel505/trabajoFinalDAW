@@ -43,7 +43,9 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
-
+                        <div class="alert text-white bg-danger" role="alert" style="display:none;" id="error">
+                            <div class="text-center text-uppercase iq-alert-text"></div>
+                        </div>
                         <div class="iq-edit-list-data">
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
@@ -217,8 +219,13 @@
                                                         console.log(xhr.responseText);
 
                                                     } else if (xhr.readyState === 4 && xhr.status != 200) {
-                                                        console.log(xhr.responseText);
-
+                                                       
+                                                        let error = document.getElementById("error");
+                                                        error.style.display = "block";
+                                                        let arr = JSON.parse(xhr.responseText);
+                                                        arr = Object.values(arr);
+                                                        
+                                                        error.firstChild.nodeValue = arr[0];
                                                     }
                                                 }
                                             });
