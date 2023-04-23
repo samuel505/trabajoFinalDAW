@@ -1,84 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <title><?= lang('Errors.pageNotFound') ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>FileHub</title>
 
-    <style>
-        div.logo {
-            height: 200px;
-            width: 155px;
-            display: inline-block;
-            opacity: 0.08;
-            position: absolute;
-            top: 2rem;
-            left: 50%;
-            margin-left: -73px;
-        }
-        body {
-            height: 100%;
-            background: #fafafa;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            color: #777;
-            font-weight: 300;
-        }
-        h1 {
-            font-weight: lighter;
-            letter-spacing: normal;
-            font-size: 3rem;
-            margin-top: 0;
-            margin-bottom: 0;
-            color: #222;
-        }
-        .wrap {
-            max-width: 1024px;
-            margin: 5rem auto;
-            padding: 2rem;
-            background: #fff;
-            text-align: center;
-            border: 1px solid #efefef;
-            border-radius: 0.5rem;
-            position: relative;
-        }
-        pre {
-            white-space: normal;
-            margin-top: 1.5rem;
-        }
-        code {
-            background: #fafafa;
-            border: 1px solid #efefef;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            display: block;
-        }
-        p {
-            margin-top: 1.5rem;
-        }
-        .footer {
-            margin-top: 2rem;
-            border-top: 1px solid #efefef;
-            padding: 1em 2em 0 2em;
-            font-size: 85%;
-            color: #999;
-        }
-        a:active,
-        a:link,
-        a:visited {
-            color: #dd4814;
-        }
-    </style>
-</head>
-<body>
-    <div class="wrap">
-        <h1>404</h1>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" />
 
-        <p>
-            <?php if (ENVIRONMENT !== 'production') : ?>
-                <?= nl2br(esc($message)) ?>
-            <?php else : ?>
-                <?= lang('Errors.sorryCannotFind') ?>
-            <?php endif ?>
-        </p>
+    <link rel="stylesheet" href="/assets/css/backend-plugin.min.css">
+    <link rel="stylesheet" href="/assets/css/backend.css?v=1.0.0">
+
+    <link rel="stylesheet" href="/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+    <link rel="stylesheet" href="/assets/vendor/remixicon/fonts/remixicon.css">
+
+<body class=" ">
+    <div class="wrapper">
+        <div class="container">
+            <div class="row no-gutters height-self-center">
+                <div class="col-sm-12 text-center align-self-center">
+                    <div class="iq-error position-relative">
+                        <img src="/assets/images/error/404.png" class="img-fluid iq-error-img" alt="">
+                        <h2 class="mb-0 mt-4">Oops! Pagina no encontrada</h2>
+                        <a class="btn btn-primary d-inline-flex align-items-center mt-3" href="/"><i class="ri-home-4-line"></i>Volver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script src="/assets/js/backend-bundle.min.js"></script>
+    <script src="/assets/js/customizer.js"></script>
+    <script src="/assets/js/chart-custom.js"></script>
+    <script src="/assets/js/app.js"></script>
 </body>
+
 </html>

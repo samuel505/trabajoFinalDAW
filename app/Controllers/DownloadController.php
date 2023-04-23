@@ -25,10 +25,13 @@ class DownloadController  extends BaseController
                 readfile($filepath); // Enviamos el archivo al navegador
                 $this->response->setStatusCode(200);
                 exit;
+            }else{
+                throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+                
             }
         } else {
-
-            $this->response->setStatusCode(404);
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+           
         }
     }
 }

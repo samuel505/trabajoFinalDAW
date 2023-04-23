@@ -68,6 +68,7 @@ if (!session()->has('id_usuario')) {
 }
 
 
+
 $routes->get('/testTotalSizeUser', 'TestController::TotalSizeUser');
 $routes->get('/testMaxSizeUser', 'TestController::MaxSizeUser');
 

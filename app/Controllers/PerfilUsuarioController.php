@@ -31,6 +31,8 @@ class PerfilUsuarioController  extends BaseController
         $image = $this->request->getFile('image');
         $data['errores'] = $this->checkForm($r);
 
+
+
         if (count($data['errores']) == 0) {
             $filecode = uniqid();
 

@@ -107,13 +107,13 @@ class FileModel extends Model
 
     function deleteFile($filecode, $id)
     {
-        return $this->set("borrado", 1)->where('filecode', $filecode)->where('id_usuario', $id)->where("borrado", 0)->update();
+        return $this->set("borrado", 1)->set("fecha_borrado", date("Y-m-d"))->where('filecode', $filecode)->where('id_usuario', $id)->where("borrado", 0)->update();
     }
 
     function recoverFile($filecode, $id)
     {
 
-        return $this->set("borrado", 0)->where('filecode', $filecode)->where('id_usuario', $id)->update();
+        return $this->set("borrado", 0)->set("fecha_borrado", NULL)->where('filecode', $filecode)->where('id_usuario', $id)->update();
     }
 
     function permanentDelete($filecode, $id)

@@ -11,11 +11,6 @@
     <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
     <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
-    <link rel="stylesheet" href="assets/vendor/doc-viewer/include/pdf/pdf.viewer.css">
-    <link rel="stylesheet" href="assets/vendor/doc-viewer/include/PPTXjs/css/pptxjs.css">
-    <link rel="stylesheet" href="assets/vendor/doc-viewer/include/PPTXjs/css/nv.d3.min.css">
-    <link rel="stylesheet" href="assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.css">
-    <link rel="stylesheet" href="assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
@@ -61,15 +56,14 @@
                                                     <div class="col-md-12">
                                                         <div class="profile-img-edit">
                                                             <div class="crm-profile-img-edit">
-                                                                <?php if (!isset($usuario['image']) || empty($usuario['image'])) {
-
+                                                                <?php if (isset($usuario['image']) || !empty($usuario['image'])) {
+                                                                    $user = $usuario['image'];
+                                                                } else {
                                                                     if ($usuario['genero'] != "mujer") {
                                                                         $user = "assets/images/user/1.jpg";
                                                                     } else {
                                                                         $user = "assets/images/user/2.jpg";
                                                                     }
-                                                                } else {
-                                                                    $user = $usuario['image'];
                                                                 }
 
                                                                 ?>
@@ -145,28 +139,40 @@
                                     </div>
 
                                     <script>
-                                        var form = document.getElementById('editUsuarioForm');
-                                        form.addEventListener('submit', function(event) {
+                                        var form1 = document.querySelector('#editUsuarioForm');
+                                        form1.addEventListener('submit', function(event) {
                                             event.preventDefault();
-                                            var formData = new FormData(form);
-                                            var xhr = new XMLHttpRequest();
-                                            xhr.open('POST', '/editUsuario', true);
+                                            var formData2 = new FormData(form1);
 
-                                            xhr.onload = function() {
-                                                if (xhr.status === 200) {
-                                                    let result = JSON.parse(xhr.responseText);
-                                                    img = result.usuario.image
-                                                    profileImage.src = img;
+                                            var xhr2 = new XMLHttpRequest();
+                                            xhr2.open('POST', '/editUsuario', true);
+
+                                            xhr2.onload = function() {
+                                                if (xhr2.status === 200) {
+                                                    let result = JSON.parse(xhr2.responseText);
+                                                    let img = result.usuario.image;
+
+                                                    if (img != null) {
+                                                        profileImage.src = img;
+                                                    } else {
+                                                        if (result.usuario.genero != "mujer") {
+                                                            img = "assets/images/user/1.jpg";
+                                                        } else {
+                                                            img = "assets/images/user/2.jpg";
+                                                        }
+                                                        profileImage.src = img;
+                                                    }
+
                                                     alert("Usuario actualizado correctamente!");
                                                     //document.getElementById("fname").nextSibling.innerHTML="SASS";
 
-
-                                                } else {
-                                                    let error = JSON.parse(xhr.response);
-                                                    //alert("Error al actualizar el usuario: "+error);
+                                                } else if (xhr2.readyState === 4 && xhr2.status != 200) {
+                                                    let error = JSON.parse(xhr2.response);
+                                                    console.log(error);
+                                                    alert("Error al actualizar el usuario: " + xhr2.response);
                                                 }
                                             };
-                                            xhr.send(formData);
+                                            xhr2.send(formData2);
                                         });
                                     </script>
                                 </div>
@@ -219,12 +225,12 @@
                                                         console.log(xhr.responseText);
 
                                                     } else if (xhr.readyState === 4 && xhr.status != 200) {
-                                                       
+
                                                         let error = document.getElementById("error");
                                                         error.style.display = "block";
                                                         let arr = JSON.parse(xhr.responseText);
                                                         arr = Object.values(arr);
-                                                        
+
                                                         error.firstChild.nodeValue = arr[0];
                                                     }
                                                 }

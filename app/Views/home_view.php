@@ -12,11 +12,7 @@
         <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
         <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
         <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
-        <link rel="stylesheet" href="assets/vendor/doc-viewer/include/pdf/pdf.viewer.css">
-        <link rel="stylesheet" href="assets/vendor/doc-viewer/include/PPTXjs/css/pptxjs.css">
-        <link rel="stylesheet" href="assets/vendor/doc-viewer/include/PPTXjs/css/nv.d3.min.css">
-        <link rel="stylesheet" href="assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.css">
-        <link rel="stylesheet" href="assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.css">
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     </head>
@@ -199,26 +195,6 @@
 
         <!-- Chart Custom JavaScript -->
         <script src="assets/js/chart-custom.js"></script>
-
-        <!--PDF-->
-        <script src="assets/vendor/doc-viewer/include/pdf/pdf.js"></script>
-        <!--Docs-->
-        <script src="assets/vendor/doc-viewer/include/docx/jszip-utils.js"></script>
-        <script src="assets/vendor/doc-viewer/include/docx/mammoth.browser.min.js"></script>
-        <!--PPTX-->
-        <script src="assets/vendor/doc-viewer/include/PPTXjs/js/filereader.js"></script>
-        <script src="assets/vendor/doc-viewer/include/PPTXjs/js/d3.min.js"></script>
-        <script src="assets/vendor/doc-viewer/include/PPTXjs/js/nv.d3.min.js"></script>
-        <script src="assets/vendor/doc-viewer/include/PPTXjs/js/pptxjs.js"></script>
-        <script src="assets/vendor/doc-viewer/include/PPTXjs/js/divs2slides.js"></script>
-        <!--All Spreadsheet -->
-        <script src="assets/vendor/doc-viewer/include/SheetJS/handsontable.full.min.js"></script>
-        <script src="assets/vendor/doc-viewer/include/SheetJS/xlsx.full.min.js"></script>
-        <!--Image viewer-->
-        <script src="assets/vendor/doc-viewer/include/verySimpleImageViewer/js/jquery.verySimpleImageViewer.js"></script>
-        <!--officeToHtml-->
-        <script src="assets/vendor/doc-viewer/include/officeToHtml/officeToHtml.js"></script>
-        <script src="assets/js/doc-viewer.js"></script>
         <!-- app JavaScript -->
         <script src="assets/js/app.js"></script>
         <!-- Modal -->
