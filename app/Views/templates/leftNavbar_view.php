@@ -1,4 +1,3 @@
-
 <script>
     function checkDisponible(array) {
         // Obtener el tamaño del archivo que se va a subir
@@ -7,6 +6,9 @@
         for (let i = 0; i < array.length; i++) {
             fileSize += array[i].size;
         }
+
+
+
 
         // Crear una nueva solicitud AJAX
         let xhr = new XMLHttpRequest();
@@ -17,7 +19,11 @@
 
                 // Verificar si hay suficiente espacio disponible
                 if (response >= fileSize) {
-                    uploadFile(array);
+                    if (fileSize <= 314572800) {
+                        uploadFile(array);
+                    } else {
+                        alert("Error sobrepasa el tamaño total maximo de subida");
+                    }
                 } else {
                     alert("Error sobrepasa el espacio disponible");
                 }
@@ -145,6 +151,7 @@
     function uploadFile(archivo) {
 
 
+
         if (archivo.length > 0) {
 
             const formData = new FormData();
@@ -195,9 +202,8 @@
             uploadFile.value = '';
 
 
-        }else{
-            let respuesta = xhr.responseText;
-            console.log(respuesta);
+        } else {
+            console.log(archivo);
         }
     }
 
@@ -253,7 +259,7 @@
             archivos.innerHTML = string;
             leftMenu.innerHTML = lMenu;
 
-        } else {
+        } else if (xhr.readyState === 4 && xhr.status !== 200) {
             let respuesta = xhr.responseText;
             console.log(respuesta);
         }
@@ -285,4 +291,3 @@
 
     }
 </script>
-

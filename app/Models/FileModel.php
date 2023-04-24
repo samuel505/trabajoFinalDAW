@@ -58,27 +58,14 @@ class FileModel extends Model
     {
         //var_dump($archivo->getSize());die(); 
 
+
         $today = date('Y-m-d', strtotime('today'));
 
-        $data = [
-
-            'filecode'  => $filecode,
-            'ruta_local'  =>  $route . $filecode . "." . $type,
-            'id_usuario'  => session()->get('id_usuario'),
-            'nombre_archivo'  => $name,
-            'size'  => $archivo->getSize(),
-            'type'  => $type,
-            'fecha_subida'  => $today,
-            'fecha_borrado'  => NULL,
-
-        ];
-
-
         $idUsuario = $id;
-        $ruta_local = $route . $filecode . "." . $type;
+        $ruta_local = $route . $filecode;
         $nombreArchivo = $archivo->getClientName();
         $size = $archivo->getSize();
-
+ 
 
         $sql = "INSERT INTO `archivos`( `filecode`, `id_usuario`, `ruta_local`, `nombre_archivo`, `fecha_subida`, `fecha_borrado`, `type`, `size`) VALUES ('$filecode','$idUsuario','$ruta_local','$nombreArchivo','$today',NULL,'$type','$size')";
         return $this->query($sql);

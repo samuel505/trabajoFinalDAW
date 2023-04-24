@@ -20,6 +20,7 @@ class UploadFileController extends BaseController
         $data = [];
         $fileModel = new FileModel();
         $archivos = $this->request->getFiles('archivo')['archivo'];
+
         $home = new HomeController();
 
         $reemplazar = $this->request->getGet("reemplazar");
@@ -37,10 +38,13 @@ class UploadFileController extends BaseController
                 if ($archivo->isValid() && !$archivo->hasMoved()) {
                     $route = "uploads/";
                     $name = $archivo->getClientName();
+                    
+
 
                     $type = pathinfo($route . $name, PATHINFO_EXTENSION);
+                 
 
-                    $archivo->move('uploads', $filecode . "." . $type);
+                    $archivo->move('uploads', (isset($type) && !empty($type) ? ($filecode . "." . $type) : ($filecode)));
 
                     $uploadFileModel = new FileModel();
 
@@ -61,7 +65,7 @@ class UploadFileController extends BaseController
             $data['OccupiedSize'] = $home->getSize();
             $data['TotalSize'] = $home->getTotal();
 
-        
+
 
             // devolver la respuesta como un objeto JSON
             echo json_encode($data);
@@ -97,7 +101,7 @@ class UploadFileController extends BaseController
             $errores[] = "No se pudo subir el archivo, motivo: No tienes espacio suficiente para subir el archivo";
         }
 
-        if (strlen($archivo->getClientName())>999) {
+        if (strlen($archivo->getClientName()) > 999) {
             $errores[] = "No se pudo subir el archivo, motivo: El titulo del archivo es demasiado largo";
         }
 
@@ -118,6 +122,7 @@ class UploadFileController extends BaseController
         $id = session()->get("id_usuario");
         $fileModel = new FileModel();
         $espacioDisponible = $fileModel->getTotalSize($id)['almacenamiento'] - $fileModel->getOcupiedSize($id);
+
 
         echo json_encode($espacioDisponible);
         exit;

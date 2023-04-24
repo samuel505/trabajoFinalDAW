@@ -14,7 +14,8 @@ class DeleteFileController extends BaseController
         $filecode = $this->request->getPost('filecode');
         $file = $fileModel->getFile($filecode);
 
-        rename($file[0]['ruta_local'], "trash/" . $file[0]["filecode"] . "." . $file[0]["type"]);
+        $route = (isset($file[0]["type"]) && !empty($file[0]["type"]) ? ($file[0]["filecode"] . "." . $file[0]["type"]) : ($file[0]["filecode"]));
+        rename($file[0]['ruta_local'], "trash/" .$route);
 
         $result =  $fileModel->deleteFile($filecode, session()->get('id_usuario'));
 
@@ -42,7 +43,10 @@ class DeleteFileController extends BaseController
 
         $filecode = $this->request->getPost('filecode');
         $file = $fileModel->getFile($filecode);
-        rename("trash/" . $file[0]["filecode"] . "." . $file[0]["type"],$file[0]['ruta_local']);
+        $route = (isset($file[0]["type"]) && !empty($file[0]["type"]) ? ($file[0]["filecode"] . "." . $file[0]["type"]) : ($file[0]["filecode"]));
+
+
+        rename("trash/" . $route, $file[0]['ruta_local']);
 
         $result =  $fileModel->recoverFile($filecode, session()->get('id_usuario'));
 
@@ -76,9 +80,11 @@ class DeleteFileController extends BaseController
 
         $file = $fileModel->getFile($filecode);
 
-       
+        $type = $file[0]['type'];
 
-        $result2 = unlink("trash/".$filecode.".".$file[0]['type']);
+        $route = (isset($file[0]["type"]) && !empty($file[0]["type"]) ? ($file[0]["filecode"] . "." . $file[0]["type"]) : ($file[0]["filecode"]));
+
+        $result2 = unlink("trash/" . $route);
         $result = $fileModel->permanentDelete($filecode, session()->get('id_usuario'));
 
         if ($result !== false && $result2) {
