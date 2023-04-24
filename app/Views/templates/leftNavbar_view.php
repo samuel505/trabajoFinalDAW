@@ -133,7 +133,7 @@
                 </span>
             </div>
             <p><?= round(100 - (($TotalSize - $OccupiedSize) / $TotalSize) * 100, 3) ?>% Full - <?= round($TotalSize - $OccupiedSize, 3) ?> GB Free</p>
-            <a href="#" class="btn btn-outline-primary view-more mt-4">Ampliar espacio</a>
+            <a href="/planes" class="btn btn-outline-primary view-more mt-4">Ampliar espacio</a>
         </div>
         <div class="p-3"></div>
     </div>
@@ -253,7 +253,7 @@
             let n1 = (100 - ((array1['TotalSize'] - array1['OccupiedSize']) / array1['TotalSize']) * 100).toFixed(3);
 
             let n2 = (array1['TotalSize'] - array1['OccupiedSize']).toFixed(3);
-            lMenu = '<h4 class="mb-3"><i class="las la-cloud mr-2"></i>Almacenamiento</h4> <p>' + array1['OccupiedSize'].toFixed(3) + '/' + array1['TotalSize'] + 'GB Usado</p> <div class="iq-progress-bar mb-3"> <span class="bg-primary iq-progress progress-1" style="width: ' + n1 + '%"> </span> </div> <p> ' + n1 + '% Full - ' + n2 + ' GB Free</p> <a href="#" class="btn btn-outline-primary view-more mt-4">Ampliar espacio</a> </div> <div class="p-3"></div> </div> </div>';
+            lMenu = '<h4 class="mb-3"><i class="las la-cloud mr-2"></i>Almacenamiento</h4> <p>' + array1['OccupiedSize'].toFixed(3) + '/' + array1['TotalSize'] + 'GB Usado</p> <div class="iq-progress-bar mb-3"> <span class="bg-primary iq-progress progress-1" style="width: ' + n1 + '%"> </span> </div> <p> ' + n1 + '% Full - ' + n2 + ' GB Free</p> <a href="/planes" class="btn btn-outline-primary view-more mt-4">Ampliar espacio</a> </div> <div class="p-3"></div> </div> </div>';
             leftMenu = document.getElementById('leftMenu');
             archivos = document.getElementById('archivos');
             archivos.innerHTML = string;
@@ -282,12 +282,4 @@
 
 
 
-    // por hacer: mostar un mensaje de copiado, hacer un contador y quitar el mensaje
-
-
-
-    function reloadSizebar() {
-
-
-    }
 </script>

@@ -75,4 +75,11 @@ class UsuarioSistemaModel extends Model
         $this->set('password', password_hash($data['newPass'], PASSWORD_DEFAULT));
         return $this->where('id_usuario', $id)->update();
     }
+
+
+
+    function cambiarPlan($usuario, $id)
+    {
+        return $this->set("id_plan", $id)->where("id_usuario", $usuario)->update();
+    }
 }

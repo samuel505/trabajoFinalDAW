@@ -12,9 +12,7 @@
         <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
         <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
         <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     </head>
 
     <body class=" ">
@@ -187,37 +185,10 @@
                 </div>
             </div>
         </footer>
-        <!-- Backend Bundle JavaScript -->
         <script src="assets/js/backend-bundle.min.js"></script>
-
-        <!-- Chart Custom JavaScript -->
         <script src="assets/js/customizer.js"></script>
-
-        <!-- Chart Custom JavaScript -->
         <script src="assets/js/chart-custom.js"></script>
-        <!-- app JavaScript -->
         <script src="assets/js/app.js"></script>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Titulo</h4>
-                        <div>
-                            <a class="btn" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div id="resolte-contaniner" style="height: 500px;" class="overflow-auto">
-                            Archivo no escontrado
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </body>
 
     </html>
