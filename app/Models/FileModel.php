@@ -62,7 +62,8 @@ class FileModel extends Model
         $today = date('Y-m-d', strtotime('today'));
 
         $idUsuario = $id;
-        $ruta_local = $route . $filecode;
+
+        $ruta_local = $route . (isset($type) && !empty($type) ? ($filecode . "." . $type) : ($filecode));
         $nombreArchivo = $archivo->getClientName();
         $size = $archivo->getSize();
  

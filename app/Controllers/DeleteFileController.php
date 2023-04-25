@@ -14,8 +14,11 @@ class DeleteFileController extends BaseController
         $filecode = $this->request->getPost('filecode');
         $file = $fileModel->getFile($filecode);
 
+   
+
+
         $route = (isset($file[0]["type"]) && !empty($file[0]["type"]) ? ($file[0]["filecode"] . "." . $file[0]["type"]) : ($file[0]["filecode"]));
-        rename($file[0]['ruta_local'], "trash/" .$route);
+        rename($file[0]['ruta_local'], "trash/" . $route);
 
         $result =  $fileModel->deleteFile($filecode, session()->get('id_usuario'));
 

@@ -42,7 +42,7 @@ class UploadFileController extends BaseController
 
 
                     $type = pathinfo($route . $name, PATHINFO_EXTENSION);
-                 
+
 
                     $archivo->move('uploads', (isset($type) && !empty($type) ? ($filecode . "." . $type) : ($filecode)));
 
