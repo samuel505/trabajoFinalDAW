@@ -41,6 +41,9 @@
                         <div class="alert text-white bg-danger" role="alert" style="display:none;" id="error">
                             <div class="text-center text-uppercase iq-alert-text"></div>
                         </div>
+                        <div class="alert text-white bg-success" role="alert" style="display:none;" id="success">
+                            <div class="text-center text-uppercase iq-alert-text"></div>
+                        </div>
                         <div class="iq-edit-list-data">
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
@@ -148,6 +151,8 @@
                                             xhr2.open('POST', '/editUsuario', true);
 
                                             xhr2.onload = function() {
+                                                let modalError = document.getElementById("error");
+                                                let success = document.getElementById("success");
                                                 if (xhr2.status === 200) {
                                                     let result = JSON.parse(xhr2.responseText);
                                                     let img = result.usuario.image;
@@ -163,13 +168,25 @@
                                                         profileImage.src = img;
                                                     }
 
-                                                    alert("Usuario actualizado correctamente!");
+                                                    modalError.style.display = "none";
+                                                    success.style.display = "block";
+                                                    success.firstChild.nodeValue = "Usuario actualizado correctamente";
                                                     //document.getElementById("fname").nextSibling.innerHTML="SASS";
 
                                                 } else if (xhr2.readyState === 4 && xhr2.status != 200) {
-                                                    let error = JSON.parse(xhr2.response);
-                                                    console.log(error);
-                                                    alert("Error al actualizar el usuario: " + xhr2.response);
+                                                    success.style.display = "none";
+                                                    modalError.style.display = "block";
+                                                    let errorText = JSON.parse(xhr2.response);
+                                                    let array = Object.values(errorText);
+                                                    errorText = "";
+                                                    for (let i = 0; i < array.length; i++) {
+                                                        errorText += array[i] + ", ";
+
+                                                    }
+                                                    errorText = errorText.substr(0, errorText.length - 2);
+
+                                                    modalError.firstChild.nodeValue = errorText;
+                                                    // alert("Error al actualizar el usuario: " + errorText);
                                                 }
                                             };
                                             xhr2.send(formData2);
@@ -220,13 +237,17 @@
 
                                                 // Manejar la respuesta de la petición
                                                 xhr.onreadystatechange = function() {
+                                                    let error = document.getElementById("error");
+                                                    let success = document.getElementById("success");
+
                                                     if (xhr.readyState === 4 && xhr.status === 200) {
                                                         // La petición se ha completado y se ha recibido una respuesta exitosa
-                                                        console.log(xhr.responseText);
+                                                        error.style.display = "none";
+                                                        success.style.display = "block";
+                                                        success.firstChild.nodeValue = "Contraseña actualizada correctamente";
 
                                                     } else if (xhr.readyState === 4 && xhr.status != 200) {
-
-                                                        let error = document.getElementById("error");
+                                                        success.style.display = "none";
                                                         error.style.display = "block";
                                                         let arr = JSON.parse(xhr.responseText);
                                                         arr = Object.values(arr);
