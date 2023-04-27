@@ -13,10 +13,10 @@ class DownloadController  extends BaseController
     {
 
         $filepath = 'uploads/' . $filename;
-        $filecode = filter_var(substr($filename, 0, strrpos($filename, ".")));
+        $filecode = filter_var(substr($filename, 0, (!is_numeric(strpos($filename, ".")) ? strlen($filename) : strpos($filename, "."))));
         $downloadFileModel = new FileModel();
         $result = $downloadFileModel->getFile($filecode);
-
+$filecode = filter_var(substr($filename, 0, (!is_numeric(strpos($filename, ".")) ? strlen($filename) : strpos($filename, "."))));
         if ($result !== false) {
             if (file_exists($filepath)) {
                 header('Content-Type: application/octet-stream'); // Tipo de archivo a descargar
@@ -35,3 +35,4 @@ class DownloadController  extends BaseController
         }
     }
 }
+

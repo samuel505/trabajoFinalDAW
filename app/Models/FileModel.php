@@ -46,7 +46,8 @@ class FileModel extends Model
     function getTotalSize($id)
     {
         $result = $this->query('SELECT almacenamiento FROM `planes` LEFT JOIN usuarios ON usuarios.id_plan = planes.id_plan WHERE id_usuario =' . $id)->getResultArray();
-
+        
+       
         if (count($result) > 0) {
             return $result[0];
         }

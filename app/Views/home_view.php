@@ -72,9 +72,11 @@
                                                             <span class="dropdown-toggle" id="dropdownMenuButton003" data-toggle="dropdown" aria-expanded="false">
                                                                 <i class="ri-more-2-fill"></i>
                                                             </span>
+                                                            <?php $url = $_SERVER['HTTP_HOST']."/file/" .(!empty($archivo["type"]) ? ($archivo["filecode"] . "." . $archivo["type"]) : $archivo["filecode"]) ?>
+
                                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton003" style>
-                                                                <?php $url = base_url() . "file/" . $archivo["filecode"] . "." . $archivo["type"] ?>
-                                                                <button class="dropdown-item" onclick="window.open('<?= $url ?>','_blank')">Descargar archivo</button>
+                                                                <?php $url = "http://".$_SERVER['HTTP_HOST']."/file/".(!empty($archivo["type"]) ? ($archivo["filecode"] . "." . $archivo["type"]) : $archivo["filecode"]) ?>
+                                                                <button class="dropdown-item" onclick="window.open('<?= $url?>','_blank')">Descargar archivo</button>
                                                                 <button class="dropdown-item" id="<?= $archivo['filecode'] ?>" title="<?= $url ?>" onclick="copiarEnlace(this)">Copiar enlace</button>
                                                                 <button type="button" class="dropdown-item" onclick="deleteFile(this)">Borrar</button>
                                                             </div>
@@ -124,7 +126,8 @@
                         for (let i = 0; i < array.length; i++) {
                             let archivo = array[i];
 
-                            let url = `${URLactual}/file/${archivo['filecode']}.${archivo['type']}`;
+                            let url = URLactual+"/file/"+ (archivo['type'].length!=0 ? (archivo['filecode']+"."+archivo['type']):archivo['filecode']);
+
                             string += `<div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-block card-stretch card-height">
             <div class="card-body image-thumb">

@@ -219,8 +219,8 @@
             let string = "";
             for (let i = 0; i < array.length; i++) {
                 let archivo = array[i];
-                let url = URLactual + '/file/' + archivo['filecode'] + '.' + archivo['type'];
-
+                let url = URLactual+"/file/"+ (archivo['type'].length!=0 ? (archivo['filecode']+"."+archivo['type']) : archivo['filecode']);
+                console.log(url);
                 string += `<div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-block card-stretch card-height">
             <div class="card-body image-thumb">
