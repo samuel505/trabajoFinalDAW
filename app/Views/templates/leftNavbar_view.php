@@ -78,6 +78,7 @@
         </div>
     </div>
     <div class="data-scrollbar" data-scroll="1">
+<?php if(\Config\Services::uri()->getPath() == "/"){?>
         <div class="new-create select-dropdown input-prepend input-append <?= \Config\Services::uri()->getPath() == "papelera" ? "d-none" : "" ?>">
             <div class="btn-group ">
                 <div data-toggle="dropdown">
@@ -86,18 +87,13 @@
                 </div>
                 <ul class="dropdown-menu">
                     <li>
-                        <div class="item"><i class="ri-folder-add-line pr-3"></i>Carpeta</div>
-                    </li>
-                    <li>
                         <div class="item" id="subida" onclick="clickInput()"><i class="ri-file-upload-line pr-3"></i>Subida de archivo</div>
                     </li>
                     <input type="file" id="uploadFile" name="uploadFile" hidden onchange="checkFileLimit()" multiple>
-                    <li>
-                        <div class="item"><i class="ri-folder-upload-line pr-3"></i>Subir archivos</div>
-                    </li>
                 </ul>
             </div>
         </div>
+        <?php }?>
         <nav class="iq-sidebar-menu">
             <ul id="iq-sidebar-toggle" class="iq-menu">
                 <li class="<?= \Config\Services::uri()->getPath() == "/" ? "active" : "" ?>">
@@ -107,9 +103,9 @@
                     <ul id="page-files" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                     </ul>
                 </li>
-                <li class=" ">
-                    <a href="" class=" ">
-                        <i class="las la-stopwatch iq-arrow-left"></i><span>Recientes</span>
+                <li class="<?= \Config\Services::uri()->getPath() == "favoritos" ? "active" : "" ?>">
+                    <a href="/favoritos" class=" ">
+                        <i class="lar la-star"></i><span>Favoritos</span>
                     </a>
                     <ul id="page-folders" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                     </ul>
@@ -224,6 +220,8 @@
                 string += `<div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-block card-stretch card-height">
             <div class="card-body image-thumb">
+            <span class="checkbox" id="${archivo['filecode']}" style="position: absolute;top: 0px;right: 10px;cursor: pointer;font-size: 40px;color: red;z-index: 100;" onclick="addFavorites(this)">${archivo['favorito']==1 ? "★":"☆"}</span>
+             <input type="checkbox" style="display:none;" ${archivo['favorito']==1? "checked":""}>
                 <div class="mb-4 text-center p-3 rounded iq-thumb">
                     <img src="../assets/images/archivo.png" class="img-fluid">
                     <div class="iq-image-overlay"></div>

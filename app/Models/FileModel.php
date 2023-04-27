@@ -8,7 +8,7 @@ class FileModel extends Model
 {
     protected $table = "archivos";
     protected $primaryKey = "id_archivo";
-    protected $allowedFields = ['id_usuario', 'filecode', 'ruta_local', 'nombre_archivo', 'fecha_subida', 'fecha_borrado', 'borrado'];
+    protected $allowedFields = ['id_usuario', 'filecode', 'ruta_local', 'nombre_archivo', 'fecha_subida', 'fecha_borrado', 'borrado','favorito'];
 
 
     function getArchivos($id)
@@ -30,6 +30,28 @@ class FileModel extends Model
         }
         return [];
     }
+
+
+    function getArchivosFavoritos($id)
+    {
+        $result = $this->select("*")->where("id_usuario", $id)->where("favorito", 1)->get()->getResultArray();
+
+        if (count($result) > 0) {
+            return $result;
+        }
+        return [];
+    }
+
+    function setFavorito($filecode, $id)
+    {
+        return $this->set("favorito", 1)->where('filecode', $filecode)->where('id_usuario', $id)->update();
+    }
+    
+    function removeFavorito($filecode, $id)
+    {
+        return $this->set("favorito", 0)->where('filecode', $filecode)->where('id_usuario', $id)->update();
+    }
+    
 
     function getOcupiedSize($id)
     {

@@ -62,6 +62,10 @@ if (!session()->has('id_usuario')) {
     $routes->post('permanentDelete', 'DeleteFileController::borradoPermanente');
     $routes->post('permanentDeleteAll', 'DeleteFileController::borradoPermanenteAll');
 
+    $routes->get('favoritos', 'FavoritosController::index');
+    $routes->post('favorite', 'FavoritosController::checkFavorite');
+
+    
     $routes->get('perfil', 'PerfilUsuarioController::index');
     $routes->get('planes', 'PlanesController::index');
     $routes->post('cambioPlan', 'PlanesController::cambioPlan');
