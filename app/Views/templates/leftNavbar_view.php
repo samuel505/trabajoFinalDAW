@@ -199,7 +199,7 @@
 
 
         } else {
-            console.log(archivo);
+            //console.log(archivo);
         }
     }
 
@@ -216,11 +216,11 @@
             for (let i = 0; i < array.length; i++) {
                 let archivo = array[i];
                 let url = URLactual+"/file/"+ (archivo['type'].length!=0 ? (archivo['filecode']+"."+archivo['type']) : archivo['filecode']);
-                console.log(url);
+                //console.log(url);
                 string += `<div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-block card-stretch card-height">
             <div class="card-body image-thumb">
-            <span class="checkbox" id="${archivo['filecode']}" style="position: absolute;top: 0px;right: 10px;cursor: pointer;font-size: 40px;color: red;z-index: 100;" onclick="addFavorites(this)">${archivo['favorito']==1 ? "★":"☆"}</span>
+            <span class="checkbox" id="${archivo['filecode']}" style="position: absolute;top: 0px;right: 10px;cursor: pointer;font-size: 40px;color: #8f93f6;z-index: 100;" onclick="addFavorites(this)">${archivo['favorito']==1 ? "★":"☆"}</span>
              <input type="checkbox" style="display:none;" ${archivo['favorito']==1? "checked":""}>
                 <div class="mb-4 text-center p-3 rounded iq-thumb">
                     <img src="../assets/images/archivo.png" class="img-fluid">
@@ -247,7 +247,7 @@
     </div>`
 
             }
-            // console.log(array1['OccupiedSize']);
+            //console.log(array1['OccupiedSize']);
             let n1 = (100 - ((array1['TotalSize'] - array1['OccupiedSize']) / array1['TotalSize']) * 100).toFixed(3);
 
             let n2 = (array1['TotalSize'] - array1['OccupiedSize']).toFixed(3);
@@ -259,7 +259,7 @@
 
         } else if (xhr.readyState === 4 && xhr.status !== 200) {
             let respuesta = xhr.responseText;
-            console.log(respuesta);
+            //console.log(respuesta);
         }
     }
 

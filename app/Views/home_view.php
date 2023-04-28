@@ -62,7 +62,7 @@
                                         <div class="card card-block card-stretch card-height">
                                             <div class="card-body image-thumb">
 
-                                                <span class="checkbox" id="<?= $archivo["filecode"] ?>" style="position: absolute;top: 0px;right: 10px;cursor: pointer;font-size: 40px;color: red;z-index: 100;" onclick="addFavorites(this)"><?= $archivo["favorito"] == 1 ? "★" : "☆" ?></span>
+                                                <span class="checkbox" id="<?= $archivo["filecode"] ?>" style="position: absolute;top: 0px;right: 10px;cursor: pointer;font-size: 40px;color: #8f93f6;z-index: 100;" onclick="addFavorites(this)"><?= $archivo["favorito"] == 1 ? "★" : "☆" ?></span>
                                                 <input type="checkbox" id="checkbox" style="display:none;" <?= $archivo["favorito"] == 1 ? "checked" : "" ?>>
 
                                                 <div class="mb-4 text-center p-3 rounded iq-thumb">
@@ -126,11 +126,11 @@
                         "favorite": checkbox.checked
                     },
                     success: function(array) {
-                        console.log(array);
+                        //console.log(array);
                     }
                 }).fail(function(array) {
                     let response = JSON.parse(array.responseText);
-                    console.log(response);
+                    //console.log(response);
                 });
 
 
@@ -174,7 +174,7 @@
                             string += `<div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-block card-stretch card-height">
             <div class="card-body image-thumb">
-            <span class="checkbox" id="${archivo['filecode']}" style="position: absolute;top: 0px;right: 10px;cursor: pointer;font-size: 40px;color: red;z-index: 100;" onclick="addFavorites(this)">${archivo['favorito']==1? "★":"☆"}</span>
+            <span class="checkbox" id="${archivo['filecode']}" style="position: absolute;top: 0px;right: 10px;cursor: pointer;font-size: 40px;color: #8f93f6;z-index: 100;" onclick="addFavorites(this)">${archivo['favorito']==1? "★":"☆"}</span>
              <input type="checkbox" id="checkbox" style="display:none;" ${archivo['favorito']==1? "checked":""}>
                 <div class="mb-4 text-center p-3 rounded iq-thumb">
                     <img src="../assets/images/archivo.png" class="img-fluid">

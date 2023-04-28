@@ -34,7 +34,7 @@ class FileModel extends Model
 
     function getArchivosFavoritos($id)
     {
-        $result = $this->select("*")->where("id_usuario", $id)->where("favorito", 1)->get()->getResultArray();
+        $result = $this->select("*")->where("id_usuario", $id)->where("favorito", 1)->where("borrado", 0)->get()->getResultArray();
 
         if (count($result) > 0) {
             return $result;

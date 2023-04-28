@@ -71,6 +71,9 @@ if (!session()->has('id_usuario')) {
     $routes->post('cambioPlan', 'PlanesController::cambioPlan');
     $routes->post('editUsuario', 'PerfilUsuarioController::editUsuario');
     $routes->post('editPasswordUsuario', 'PerfilUsuarioController::editPassword');
+
+    //$routes->get('test', 'TestController::index');
+    //$routes->post('testRecogida', 'TestController::testRecogida');
 }
 
 

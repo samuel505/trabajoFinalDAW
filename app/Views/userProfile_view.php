@@ -247,6 +247,7 @@
                                                         success.firstChild.nodeValue = "Contraseña actualizada correctamente";
 
                                                     } else if (xhr.readyState === 4 && xhr.status != 200) {
+                                                       //error
                                                         success.style.display = "none";
                                                         error.style.display = "block";
                                                         let arr = JSON.parse(xhr.responseText);
