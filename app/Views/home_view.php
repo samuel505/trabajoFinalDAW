@@ -16,10 +16,16 @@
     </head>
 
     <body class=" ">
-        <div class="wrapper" id="drop_zone">
+
+        <div class="wrapper">
+
             <?php include "templates/leftNavbar_view.php" ?>
             <?php include "templates/topNavbar_view.php" ?>
-            <div class="content-page">
+
+            <div class="content-page" id="dropzone">
+                <div id="drag-icon" hidden>
+                    <img src="https://img.freepik.com/iconos-gratis/flecha-abajo_318-633137.jpg?w=2000" alt="Icono de arrastre" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;">
+                </div>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
@@ -210,6 +216,48 @@
 
             }
         </script>
+        <script>
+            // subir archivo arrastrandolo
+            var dropzone = document.getElementById("dropzone");
+            var dragIcon = document.getElementById("drag-icon");
+
+            dropzone.addEventListener("dragover", function(event) {
+                event.preventDefault();
+            });
+            dropzone.addEventListener("dragleave", function(event) {
+                event.preventDefault();
+                dragIcon.setAttribute("hidden", true);
+
+            });
+
+            dropzone.addEventListener("drop", function(event) {
+                var dragIcon = document.getElementById("drag-icon");
+                event.preventDefault();
+                dragIcon.setAttribute("hidden", true);
+                let files = event.dataTransfer.files;
+                checkFileLimit(files)
+
+            });
+
+
+            dropzone.addEventListener("dragover", function(event) {
+                event.preventDefault();
+
+                // Muestra el icono
+                dragIcon.removeAttribute("hidden");
+
+                // Calcula la posición del icono en la pantalla
+                var x = event.clientX - (dragIcon.offsetWidth / 2);
+                var y = event.clientY - (dragIcon.offsetHeight / 2);
+
+                // Ubica el icono en el centro de la pantalla
+                dragIcon.style.left = x + "px";
+                dragIcon.style.top = y + "px";
+            });
+        </script>
+
+
+
         <!-- Wrapper End-->
 
 

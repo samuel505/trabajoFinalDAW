@@ -42,6 +42,45 @@ class FileModel extends Model
         return [];
     }
 
+
+
+
+
+    function searchArchivos($id,$search)
+    {
+        $result = $this->select("*")->where("id_usuario", $id)->where("borrado", 0)->like("nombre_archivo",$search)->get()->getResultArray();
+
+        if (count($result) > 0) {
+            return $result;
+        }
+        return [];
+    }
+
+    function searchArchivosPapelera($id,$search)
+    {
+        $result = $this->select("*")->where("id_usuario", $id)->where("borrado", 1)->like("nombre_archivo",$search)->get()->getResultArray();
+
+        if (count($result) > 0) {
+            return $result;
+        }
+        return [];
+    }
+
+
+    function searchArchivosFavoritos($id,$search)
+    {
+        $result = $this->select("*")->where("id_usuario", $id)->where("favorito", 1)->where("borrado", 0)->like("nombre_archivo",$search)->get()->getResultArray();
+
+        if (count($result) > 0) {
+            return $result;
+        }
+        return [];
+    }
+
+
+
+
+
     function setFavorito($filecode, $id)
     {
         return $this->set("favorito", 1)->where('filecode', $filecode)->where('id_usuario', $id)->update();

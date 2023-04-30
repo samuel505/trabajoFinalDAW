@@ -36,7 +36,7 @@
         xhr.send(fileSize);
     }
 
-    function checkFileLimit() {
+    function checkFileLimit(array) {
 
         // Crear una nueva solicitud AJAX
         let xhr = new XMLHttpRequest();
@@ -46,7 +46,8 @@
         // Configurar la solicitud
         errores = [];
 
-        let array = document.querySelector('input[type="file"]').files;
+  
+        
         xhr.onreadystatechange = function() {
 
             if (xhr.readyState === 4 && xhr.status === 200) {
@@ -89,7 +90,7 @@
                     <li>
                         <div class="item" id="subida" onclick="clickInput()"><i class="ri-file-upload-line pr-3"></i>Subida de archivo</div>
                     </li>
-                    <input type="file" id="uploadFile" name="uploadFile" hidden onchange="checkFileLimit()" multiple>
+                    <input type="file" id="uploadFile" name="uploadFile" hidden onchange="checkFileLimit(this.files)" multiple>
                 </ul>
             </div>
         </div>
