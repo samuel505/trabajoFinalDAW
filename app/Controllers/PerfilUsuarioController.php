@@ -163,10 +163,15 @@ class PerfilUsuarioController  extends BaseController
 
         if (isset($data['fecha_nacimiento']) && !empty($data['fecha_nacimiento'])) {
             $fecha = explode("-", $data['fecha_nacimiento']);
+            $timestamp_fecha = strtotime($data['fecha_nacimiento']);
+            $timestamp_actual = time();
 
             if (!checkdate($fecha[1], $fecha[2], $fecha[0])) {
                 $errores['fecha_nacimiento'] = "formato de fecha erroneo";
-            }
+            } else
+            if ($timestamp_fecha > $timestamp_actual) {
+                $errores['fecha_nacimiento'] = "la fecha de nacimiento no puede ser mayor a la actual";
+            } 
         }
 
         return $errores;

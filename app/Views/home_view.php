@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
         <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     </head>
 
     <body class=" ">
@@ -246,22 +247,16 @@
                 // Muestra el icono
                 dragIcon.removeAttribute("hidden");
 
-                // Calcula la posición del icono en la pantalla
-                var x = event.clientX - (dragIcon.offsetWidth / 2);
-                var y = event.clientY - (dragIcon.offsetHeight / 2);
-
-                // Ubica el icono en el centro de la pantalla
-                dragIcon.style.left = x + "px";
-                dragIcon.style.top = y + "px";
             });
         </script>
 
 
 
+
+
+
+
         <!-- Wrapper End-->
-
-
-
         <footer class="iq-footer">
             <div class="container-fluid">
                 <div class="row">
