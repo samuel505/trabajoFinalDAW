@@ -8,18 +8,14 @@
                 </a>
             </div>
             <div class="iq-search-bar device-search">
-                <form>
-
-                    <div class="input-prepend input-append">
-                        <div class="btn-group">
-
-                            <label class="dropdown-toggle searchbox" data-toggle="dropdown">
-                                <input class="dropdown-toggle search-query text search-input" type="text" placeholder="Escribe para buscar..."><span class="search-replace"></span>
-                                <a class="search-link" href="#"><i class="ri-search-line"></i></a>
-                            </label>
-                        </div>
+                <div class="input-prepend input-append">
+                    <div class="btn-group">
+                        <label class="dropdown-toggle searchbox" data-toggle="dropdown">
+                            <input class="dropdown-toggle search-query text search-input" type="text" placeholder="Escribe para buscar..." onkeyup="search(this.value)"><span class="search-replace"></span>
+                            <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                        </label>
                     </div>
-                </form>
+                </div>
             </div>
 
             <div class="d-flex align-items-center">

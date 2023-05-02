@@ -25,7 +25,8 @@
 
             <div class="content-page" id="dropzone">
                 <div id="drag-icon" hidden>
-                    <img src="https://img.freepik.com/iconos-gratis/flecha-abajo_318-633137.jpg?w=2000" alt="Icono de arrastre" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;">
+                    <img src="https://img.freepik.com/iconos-gratis/flecha-abajo_318-633137.jpg?w=2000" title="SUELTA EL ARCHIVO" alt="Icono de arrastre" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto; height:200px;">
+
                 </div>
                 <div class="container-fluid">
                     <div class="row">
@@ -249,7 +250,61 @@
 
             });
         </script>
+        <script>
+            function search(name) {
+                $.ajax({
+                    type: "POST",
+                    url: '/searchHome',
+                    dataType: 'json',
+                    data: {
+                        "search": [name]
+                    },
+                    success: function(array) {
 
+                        let URLactual = window.location.origin;
+
+                        let string = "";
+                        for (let i = 0; i < array.length; i++) {
+                            let archivo = array[i];
+
+                            let url = URLactual + "/file/" + (archivo['type'].length != 0 ? (archivo['filecode'] + "." + archivo['type']) : archivo['filecode']);
+
+                            string += `<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="card card-block card-stretch card-height">
+<div class="card-body image-thumb">
+<span class="checkbox" id="${archivo['filecode']}" style="position: absolute;top: 0px;right: 10px;cursor: pointer;font-size: 40px;color: #8f93f6;z-index: 10;" onclick="addFavorites(this)">${archivo['favorito']==1? "★":"☆"}</span>
+<input type="checkbox" id="checkbox" style="display:none;" ${archivo['favorito']==1? "checked":""}>
+<div class="mb-4 text-center p-3 rounded iq-thumb">
+<img src="../assets/images/archivo.png" class="img-fluid">
+<div class="iq-image-overlay"></div>
+</div>
+<div class="d-flex justify-content-between">
+<h6>${archivo['nombre_archivo']}</h6>
+<div class="card-header-toolbar">
+<div class="dropdown">
+    <span class="dropdown-toggle" id="dropdownMenuButton003" data-toggle="dropdown" aria-expanded="false">
+        <i class="ri-more-2-fill"></i>
+    </span>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton003" style>
+       
+        <button class="dropdown-item" onclick="window.open('${url}','_blank')">Descargar archivo</button>
+        <button class="dropdown-item" id="${archivo['filecode']}" title="${url}" onclick="copiarEnlace(this)">Copiar enlace</button>
+        <button type="button" class="dropdown-item" onclick="deleteFile(this)">Borrar</button>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>`;
+
+                        }
+                        archivos.innerHTML = string;
+                    },
+
+                });
+            }
+        </script>
 
 
 
