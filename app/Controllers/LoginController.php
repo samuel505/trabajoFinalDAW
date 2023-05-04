@@ -40,4 +40,6 @@ class LoginController extends BaseController
             return view('login_view', $data);
         }
     }
+
+    
 }

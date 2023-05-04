@@ -46,8 +46,8 @@
         // Configurar la solicitud
         errores = [];
 
-  
-        
+
+
         xhr.onreadystatechange = function() {
 
             if (xhr.readyState === 4 && xhr.status === 200) {
@@ -79,22 +79,22 @@
         </div>
     </div>
     <div class="data-scrollbar" data-scroll="1">
-<?php if(\Config\Services::uri()->getPath() == "/"){?>
-        <div class="new-create select-dropdown input-prepend input-append <?= \Config\Services::uri()->getPath() == "papelera" ? "d-none" : "" ?>">
-            <div class="btn-group ">
-                <div data-toggle="dropdown">
-                    <div class="search-query selet-caption"><i class="las la-plus pr-2"></i>Crear nueva</div><span class="search-replace"></span>
-                    <span class="caret"><!--icon--></span>
+        <?php if (\Config\Services::uri()->getPath() == "/") { ?>
+            <div class="new-create select-dropdown input-prepend input-append <?= \Config\Services::uri()->getPath() == "papelera" ? "d-none" : "" ?>">
+                <div class="btn-group ">
+                    <div data-toggle="dropdown">
+                        <div class="search-query selet-caption"><i class="las la-plus pr-2"></i>Crear nueva</div><span class="search-replace"></span>
+                        <span class="caret"><!--icon--></span>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="item" id="subida" onclick="clickInput()"><i class="ri-file-upload-line pr-3"></i>Subida de archivo</div>
+                        </li>
+                        <input type="file" id="uploadFile" name="uploadFile" hidden onchange="checkFileLimit(this.files)" multiple>
+                    </ul>
                 </div>
-                <ul class="dropdown-menu">
-                    <li>
-                        <div class="item" id="subida" onclick="clickInput()"><i class="ri-file-upload-line pr-3"></i>Subida de archivo</div>
-                    </li>
-                    <input type="file" id="uploadFile" name="uploadFile" hidden onchange="checkFileLimit(this.files)" multiple>
-                </ul>
             </div>
-        </div>
-        <?php }?>
+        <?php } ?>
         <nav class="iq-sidebar-menu">
             <ul id="iq-sidebar-toggle" class="iq-menu">
                 <li class="<?= \Config\Services::uri()->getPath() == "/" ? "active" : "" ?>">
@@ -154,10 +154,7 @@
             const formData = new FormData();
 
             for (let i = 0; i < archivo.length; i++) {
-                if (existeArchivo(archivo[i])) {
-                    formData.append('archivo[]', archivo[i]);
-                }
-
+                formData.append('archivo[]', archivo[i]);
             }
 
             // Mostrar la barra de carga al empezar la subida
@@ -216,7 +213,7 @@
             let string = "";
             for (let i = 0; i < array.length; i++) {
                 let archivo = array[i];
-                let url = URLactual+"/file/"+ (archivo['type'].length!=0 ? (archivo['filecode']+"."+archivo['type']) : archivo['filecode']);
+                let url = URLactual + "/file/" + (archivo['type'].length != 0 ? (archivo['filecode'] + "." + archivo['type']) : archivo['filecode']);
                 //console.log(url);
                 string += `<div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-block card-stretch card-height">
@@ -263,22 +260,4 @@
             //console.log(respuesta);
         }
     }
-
-    function existeArchivo(archivo) {
-
-        if (false) {
-
-            if (false) {
-                return true;
-            } else {
-                return false
-            }
-        } else {
-            return true;
-        }
-
-    }
-
-
-
 </script>
