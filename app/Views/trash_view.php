@@ -23,6 +23,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
+                    <div class="alert text-white bg-danger" role="alert" style="display:none;" id="error">
+                                <div class="text-center text-uppercase iq-alert-text"></div>
+                            </div>
+                            <div class="alert text-white bg-success" role="alert" style="display:none;" id="success">
+                                <div class="text-center text-uppercase iq-alert-text"></div>
+                            </div>
                         <div class="card card-block card-stretch  card-transparent">
                             <div class="card-header d-flex justify-content-between pb-0">
                                 <div class="header-title">
@@ -90,7 +96,8 @@
         function recoverFile(boton) {
 
             let filecode = boton.previousElementSibling.innerHTML;
-
+            let modalError = document.getElementById("error");
+            let success = document.getElementById("success");
             $.ajax({
                 type: "POST",
                 url: '/recoverFile',
@@ -141,8 +148,16 @@
                     archivos.innerHTML = string;
                 }
             }).fail(function(array) {
+                let modalError = document.getElementById("error");
+                let modalsuccess = document.getElementById("success");
                 let response = JSON.parse(array.responseText);
+                modalsuccess.style.display = "none";
+                modalError.style.display = "block";
                 console.log(response);
+                modalError.firstChild.nodeValue = response;
+                setTimeout(() => {
+                    modalError.style.display = "none"
+                }, 3000);
             });
 
         }
@@ -165,7 +180,8 @@
 
                         array1 = array['archivos'];
                         let URLactual = window.location.origin;
-
+                        let modalError = document.getElementById("error");
+                        let success = document.getElementById("success");
                         let string = "";
                         if (typeof(array1) !== 'undefined') {
 
@@ -208,12 +224,19 @@
                         leftMenu = document.getElementById('leftMenu');
                         archivos = document.getElementById('archivos');
                         archivos.innerHTML = string;
-                        console.log(lMenu);
+
                         leftMenu.innerHTML = lMenu;
                     }
                 }).fail(function(array) {
                     let response = JSON.parse(array.responseText);
-                    console.log(response);
+                    let modalError = document.getElementById("error");
+                    let modalsuccess = document.getElementById("success");
+                    modalsuccess.style.display = "none";
+                    modalError.style.display = "block";
+                    modalError.firstChild.nodeValue = response;
+                    setTimeout(() => {
+                        modalError.style.display = "none"
+                    }, 3000);
                 });
 
             }
@@ -221,7 +244,8 @@
 
 
         function permanentDeleteAll() {
-
+            let modalError = document.getElementById("error");
+            let success = document.getElementById("success");
 
             if (confirmDelete()) {
 
@@ -232,8 +256,6 @@
                     dataType: 'json',
 
                     success: function(array) {
-
-
 
                         array1 = array['archivos'];
                         let n1 = (100 - ((array['TotalSize'] - array['OccupiedSize']) / array['TotalSize']) * 100).toFixed(3);
@@ -249,7 +271,14 @@
                     }
                 }).fail(function(array) {
                     let response = JSON.parse(array.responseText);
-                    console.log(response);
+                    let modalError = document.getElementById("error");
+                    let modalsuccess = document.getElementById("success");
+                    successModal.style.display = "none";
+                    modalError.style.display = "block";
+                    modalError.firstChild.nodeValue = response;
+                    setTimeout(() => {
+                        modalError.style.display = "none"
+                    }, 3000);
                 });
 
             }

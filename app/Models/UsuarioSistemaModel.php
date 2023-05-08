@@ -66,17 +66,28 @@ class UsuarioSistemaModel extends Model
         if (isset($data['image']) && !empty($data['image'])) {
             $this->set('image', $data['image']);
         }
-        return $this->where('id_usuario', $id)->update();
+        try {
+            return $this->where('id_usuario', $id)->update();
+        } catch (\CodeIgniter\Database\Exceptions\DatabaseException $e) {
+            return false;
+        }
     }
 
     function editPasswordUsuario($id, $data)
     {
-
-        $this->set('password', password_hash($data['newPass'], PASSWORD_DEFAULT));
-        return $this->where('id_usuario', $id)->update();
+        try {
+            $this->set('password', password_hash($data['newPass'], PASSWORD_DEFAULT));
+            return $this->where('id_usuario', $id)->update();
+        } catch (\CodeIgniter\Database\Exceptions\DatabaseException $e) {
+            return false;
+        }
     }
 
-
+function existeCorreo($email)
+{
+    $r =$this->select("*")->where("email",$email)->get()->getResultArray();
+    return count($r)>0;
+}
 
     function cambiarPlan($usuario, $id)
     {

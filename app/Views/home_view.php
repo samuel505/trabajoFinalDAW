@@ -115,7 +115,8 @@
             function addFavorites(boton) {
                 var checkbox = boton.nextSibling.nextSibling;
                 var checkboxSpan = boton;
-
+                let modalError = document.getElementById("error");
+                let success = document.getElementById("success");
                 if (checkbox.checked) {
                     checkbox.removeAttribute("checked");
                     checkboxSpan.classList.remove('checked');
@@ -143,11 +144,13 @@
 
                     }
                 }).fail(function(array) {
+                    let modalError = document.getElementById("error");
+                    let modalsuccess = document.getElementById("success");
                     let response = JSON.parse(array.responseText);
-                    success.style.display = "none";
-                    error.style.display = "block";
+                    modalsuccess.style.display = "none";
+                    modalError.style.display = "block";
 
-                    error.firstChild.nodeValue = response;
+                    modalError.firstChild.nodeValue = response;
                 });
 
 
@@ -156,23 +159,28 @@
         <script>
             // por hacer: mostar un mensaje de copiado, hacer un contador y quitar el mensaje
             function copiarEnlace(boton) {
+                let modalError = document.getElementById("error");
+                let success = document.getElementById("success");
                 let enlace = boton.title;
                 navigator.clipboard.writeText(enlace)
                     .then(function() {
-
-                            error.style.display = "none";
-                            success.style.display = "block";
-                            success.firstChild.nodeValue = 'Enlace copiado al portapapeles';
+                            let modalError = document.getElementById("error");
+                            let modalsuccess = document.getElementById("success");
+                            modalError.style.display = "none";
+                            modalsuccess.style.display = "block";
+                            modalsuccess.firstChild.nodeValue = 'Enlace copiado al portapapeles';
                             setTimeout(() => {
-                                success.style.display = "none"
+                                modalsuccess.style.display = "none"
                             }, 3000);
                         },
                         function() {
-                            success.style.display = "none";
-                            error.style.display = "block";
-                            error.firstChild.nodeValue = 'Error al copiar el enlace';
+                            let modalError = document.getElementById("error");
+                            let modalsuccess = document.getElementById("success");
+                            modalsuccess.style.display = "none";
+                            modalError.style.display = "block";
+                            modalError.firstChild.nodeValue = 'Error al copiar el enlace';
                             setTimeout(() => {
-                                error.style.display = "none"
+                                modalError.style.display = "none"
                             }, 3000);
 
                         });
@@ -182,7 +190,8 @@
             function deleteFile(boton) {
 
                 let filecode = boton.previousElementSibling.id;
-
+                let modalError = document.getElementById("error");
+                let success = document.getElementById("success");
                 $.ajax({
                     type: "POST",
                     url: '/deleteFile',
@@ -234,7 +243,14 @@
                     }
                 }).fail(function(array) {
                     let respuesta = array.responseText;
-                    alert(respuesta);
+                    let modalError = document.getElementById("error");
+                    let modalsuccess = document.getElementById("success");
+                    modalsuccess.style.display = "none";
+                    modalError.style.display = "block";
+                    modalError.firstChild.nodeValue = respuesta;
+                    setTimeout(() => {
+                        modalError.style.display = "none"
+                    }, 3000);
                 });
 
             }
@@ -273,6 +289,8 @@
         </script>
         <script>
             function search(name) {
+                let modalError = document.getElementById("error");
+                let success = document.getElementById("success");
                 $.ajax({
                     type: "POST",
                     url: '/searchHome',

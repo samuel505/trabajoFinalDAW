@@ -50,13 +50,13 @@
                                     window.addEventListener("load",() => {
                                        var miCookie = document.cookie.replace(/(?:(?:^|.*;\s*)correo\s*\=\s*([^;]*).*$)|^.*$/, "$1");
                                       let submit = document.getElementById("submit");
-                                       if (miCookie!="NULL") {
+                                       if (miCookie!="") {
                                           email.value = miCookie;
                                           recuerdameInput.checked=true;
                                        }
                                        submit.addEventListener("click", () => {
                                           if (recuerdameInput.checked==false) {
-                                             document.cookie = "correo=NULL";
+                                             document.cookie = "correo=";
                                           } else {
                                              document.cookie = "correo="+email.value;
                                           }

@@ -14,13 +14,16 @@ class DeleteFileController extends BaseController
         $filecode = $this->request->getPost('filecode');
         $file = $fileModel->getFile($filecode);
 
-   
 
 
-        $route = (isset($file[0]["type"]) && !empty($file[0]["type"]) ? ($file[0]["filecode"] . "." . $file[0]["type"]) : ($file[0]["filecode"]));
-        rename($file[0]['ruta_local'], "trash/" . $route);
+        if ($file !== false) {
+            $route = (isset($file[0]["type"]) && !empty($file[0]["type"]) ? ($file[0]["filecode"] . "." . $file[0]["type"]) : ($file[0]["filecode"]));
+            rename($file[0]['ruta_local'], "trash/" . $route);
+            $result =  $fileModel->deleteFile($filecode, session()->get('id_usuario'));
+        } else {
+            $result = false;
+        }
 
-        $result =  $fileModel->deleteFile($filecode, session()->get('id_usuario'));
 
         if ($result) {
             // enviar una respuesta HTTP 200 OK
@@ -46,13 +49,16 @@ class DeleteFileController extends BaseController
 
         $filecode = $this->request->getPost('filecode');
         $file = $fileModel->getFile($filecode);
-        $route = (isset($file[0]["type"]) && !empty($file[0]["type"]) ? ($file[0]["filecode"] . "." . $file[0]["type"]) : ($file[0]["filecode"]));
+        if ($file !== false) {
+            $route = (isset($file[0]["type"]) && !empty($file[0]["type"]) ? ($file[0]["filecode"] . "." . $file[0]["type"]) : ($file[0]["filecode"]));
 
 
-        rename("trash/" . $route, $file[0]['ruta_local']);
+            rename("trash/" . $route, $file[0]['ruta_local']);
 
-        $result =  $fileModel->recoverFile($filecode, session()->get('id_usuario'));
-
+            $result =  $fileModel->recoverFile($filecode, session()->get('id_usuario'));
+        }else{
+            $result = false;
+        }
         if ($result) {
             // enviar una respuesta HTTP 200 OK
             http_response_code(200);
@@ -67,7 +73,7 @@ class DeleteFileController extends BaseController
             http_response_code(400);
 
             // devolver la respuesta como un objeto JSON
-            echo json_encode('no se pudo borrar');
+            echo json_encode('No se pudo restaurar el archivo');
         }
         exit;
     }
@@ -82,13 +88,16 @@ class DeleteFileController extends BaseController
         $home = new HomeController();
 
         $file = $fileModel->getFile($filecode);
+        if ($file !== false) {
+            $type = $file[0]['type'];
 
-        $type = $file[0]['type'];
+            $route = (isset($file[0]["type"]) && !empty($file[0]["type"]) ? ($file[0]["filecode"] . "." . $file[0]["type"]) : ($file[0]["filecode"]));
 
-        $route = (isset($file[0]["type"]) && !empty($file[0]["type"]) ? ($file[0]["filecode"] . "." . $file[0]["type"]) : ($file[0]["filecode"]));
-
-        $result2 = unlink("trash/" . $route);
-        $result = $fileModel->permanentDelete($filecode, session()->get('id_usuario'));
+            $result2 = unlink("trash/" . $route);
+            $result = $fileModel->permanentDelete($filecode, session()->get('id_usuario'));
+        } else {
+            $result = false;
+        }
 
         if ($result !== false && $result2) {
             // enviar una respuesta HTTP 200 OK

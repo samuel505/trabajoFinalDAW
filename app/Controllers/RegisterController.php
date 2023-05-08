@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\UsuarioSistemaModel;
+
 class RegisterController extends BaseController
 {
     public function index()
@@ -37,6 +39,7 @@ class RegisterController extends BaseController
     function checkForm($data)
     {
         $errores = [];
+        $model = new UsuarioSistemaModel();
 
         if (isset($data['nombre']) || !empty($data['nombre'])) {
             if (!preg_match("/[A-Za-z ]+/", $data['nombre'])) {
@@ -57,6 +60,8 @@ class RegisterController extends BaseController
         if (isset($data['email']) || !empty($data['email'])) {
             if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
                 $errores['email'] = "Inserte un correo electronico valido";
+            } else if ($model->existeCorreo($data['email'])) {
+                $errores['email'] = "El correo electronico ya existe";
             }
         } else {
             $errores['email'] = "Campo obligatorio";

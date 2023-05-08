@@ -50,7 +50,9 @@ class PerfilUsuarioController  extends BaseController
 
             $result = $usuarioModel->editUsuario(session()->get("id_usuario"), $r);
         } else {
-            $result = false;
+            http_response_code(400);
+            echo json_encode($data['errores']);
+            exit;
         }
 
         if ($result) {
@@ -61,7 +63,7 @@ class PerfilUsuarioController  extends BaseController
         } else {
             http_response_code(400);
 
-            echo json_encode($data['errores']);
+            echo json_encode("error al actualizar el usuario");
         }
         exit;
     }
@@ -124,6 +126,7 @@ class PerfilUsuarioController  extends BaseController
     function checkForm($data)
     {
         $errores = [];
+        $model = new UsuarioSistemaModel();
 
         if (isset($data['nombre']) || !empty($data['nombre'])) {
             if (!preg_match("/[A-Za-z ]+/", $data['nombre'])) {
@@ -144,6 +147,8 @@ class PerfilUsuarioController  extends BaseController
         if (isset($data['email']) || !empty($data['email'])) {
             if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
                 $errores['email'] = "Inserte un correo electronico valido";
+            } else if ($model->existeCorreo($data['email'])) {
+                $errores['email'] = "El correo electronico ya existe";
             }
         } else {
             $errores['email'] = "El campo de correo electronico es obligatorio";
@@ -171,7 +176,7 @@ class PerfilUsuarioController  extends BaseController
             } else
             if ($timestamp_fecha > $timestamp_actual) {
                 $errores['fecha_nacimiento'] = "la fecha de nacimiento no puede ser mayor a la actual";
-            } 
+            }
         }
 
         return $errores;

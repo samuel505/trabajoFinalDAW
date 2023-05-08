@@ -8,7 +8,7 @@ class FileModel extends Model
 {
     protected $table = "archivos";
     protected $primaryKey = "id_archivo";
-    protected $allowedFields = ['id_usuario', 'filecode', 'ruta_local', 'nombre_archivo', 'fecha_subida', 'fecha_borrado', 'borrado','favorito'];
+    protected $allowedFields = ['id_usuario', 'filecode', 'ruta_local', 'nombre_archivo', 'fecha_subida', 'fecha_borrado', 'borrado', 'favorito'];
 
 
     function getArchivos($id)
@@ -46,9 +46,9 @@ class FileModel extends Model
 
 
 
-    function searchArchivos($id,$search)
+    function searchArchivos($id, $search)
     {
-        $result = $this->select("*")->where("id_usuario", $id)->where("borrado", 0)->like("nombre_archivo",$search)->get()->getResultArray();
+        $result = $this->select("*")->where("id_usuario", $id)->where("borrado", 0)->like("nombre_archivo", $search)->get()->getResultArray();
 
         if (count($result) > 0) {
             return $result;
@@ -56,9 +56,9 @@ class FileModel extends Model
         return [];
     }
 
-    function searchArchivosPapelera($id,$search)
+    function searchArchivosPapelera($id, $search)
     {
-        $result = $this->select("*")->where("id_usuario", $id)->where("borrado", 1)->like("nombre_archivo",$search)->get()->getResultArray();
+        $result = $this->select("*")->where("id_usuario", $id)->where("borrado", 1)->like("nombre_archivo", $search)->get()->getResultArray();
 
         if (count($result) > 0) {
             return $result;
@@ -67,9 +67,9 @@ class FileModel extends Model
     }
 
 
-    function searchArchivosFavoritos($id,$search)
+    function searchArchivosFavoritos($id, $search)
     {
-        $result = $this->select("*")->where("id_usuario", $id)->where("favorito", 1)->where("borrado", 0)->like("nombre_archivo",$search)->get()->getResultArray();
+        $result = $this->select("*")->where("id_usuario", $id)->where("favorito", 1)->where("borrado", 0)->like("nombre_archivo", $search)->get()->getResultArray();
 
         if (count($result) > 0) {
             return $result;
@@ -85,12 +85,12 @@ class FileModel extends Model
     {
         return $this->set("favorito", 1)->where('filecode', $filecode)->where('id_usuario', $id)->update();
     }
-    
+
     function removeFavorito($filecode, $id)
     {
         return $this->set("favorito", 0)->where('filecode', $filecode)->where('id_usuario', $id)->update();
     }
-    
+
 
     function getOcupiedSize($id)
     {
@@ -107,8 +107,8 @@ class FileModel extends Model
     function getTotalSize($id)
     {
         $result = $this->query('SELECT almacenamiento FROM `planes` LEFT JOIN usuarios ON usuarios.id_plan = planes.id_plan WHERE id_usuario =' . $id)->getResultArray();
-        
-       
+
+
         if (count($result) > 0) {
             return $result[0];
         }
@@ -128,7 +128,7 @@ class FileModel extends Model
         $ruta_local = $route . (isset($type) && !empty($type) ? ($filecode . "." . $type) : ($filecode));
         $nombreArchivo = $archivo->getClientName();
         $size = $archivo->getSize();
- 
+
 
         $sql = "INSERT INTO `archivos`( `filecode`, `id_usuario`, `ruta_local`, `nombre_archivo`, `fecha_subida`, `fecha_borrado`, `type`, `size`) VALUES ('$filecode','$idUsuario','$ruta_local','$nombreArchivo','$today',NULL,'$type','$size')";
         return $this->query($sql);
@@ -157,22 +157,37 @@ class FileModel extends Model
 
     function deleteFile($filecode, $id)
     {
-        return $this->set("borrado", 1)->set("fecha_borrado", date("Y-m-d"))->where('filecode', $filecode)->where('id_usuario', $id)->where("borrado", 0)->update();
+        try {
+            return $this->set("borrado", 1)->set("fecha_borrado", date("Y-m-d"))->where('filecode', $filecode)->where('id_usuario', $id)->where("borrado", 0)->update();
+        } catch (\CodeIgniter\Database\Exceptions\DatabaseException $e) {
+            return false;
+        }
     }
 
     function recoverFile($filecode, $id)
     {
-
-        return $this->set("borrado", 0)->set("fecha_borrado", NULL)->where('filecode', $filecode)->where('id_usuario', $id)->update();
+        try {
+            return $this->set("borrado", 0)->set("fecha_borrado", NULL)->where('filecode', $filecode)->where('id_usuario', $id)->update();
+        } catch (\CodeIgniter\Database\Exceptions\DatabaseException $e) {
+            return false;
+        }
     }
 
     function permanentDelete($filecode, $id)
     {
-        return  $result = $this->where('filecode', $filecode)->where('id_usuario', $id)->where("borrado", 1)->delete();
+        try {
+            return  $result = $this->where('filecode', $filecode)->where('id_usuario', $id)->where("borrado", 1)->delete();
+        } catch (\CodeIgniter\Database\Exceptions\DatabaseException $e) {
+            return false;
+        }
     }
 
     function permanentDeleteAll($id)
     {
-        return  $result = $this->where('id_usuario', $id)->where("borrado", 1)->delete();
+        try {
+            return  $result = $this->where('id_usuario', $id)->where("borrado", 1)->delete();
+        } catch (\CodeIgniter\Database\Exceptions\DatabaseException $e) {
+            return false;
+        }
     }
 }

@@ -172,7 +172,9 @@
                                                     success.style.display = "block";
                                                     success.firstChild.nodeValue = "Usuario actualizado correctamente";
                                                     //document.getElementById("fname").nextSibling.innerHTML="SASS";
-
+                                                    setTimeout(() => {
+                                                        success.style.display = "none"
+                                                    }, 3000);
                                                 } else if (xhr2.readyState === 4 && xhr2.status != 200) {
                                                     success.style.display = "none";
                                                     modalError.style.display = "block";
@@ -184,7 +186,9 @@
 
                                                     }
                                                     errorText = errorText.substr(0, errorText.length - 2);
-
+                                                    setTimeout(() => {
+                                                        modalError.style.display = "none"
+                                                    }, 3000);
                                                     modalError.firstChild.nodeValue = errorText;
                                                     // alert("Error al actualizar el usuario: " + errorText);
                                                 }
@@ -237,8 +241,8 @@
 
                                                 // Manejar la respuesta de la petición
                                                 xhr.onreadystatechange = function() {
-                                                    let error = document.getElementById("error");
-                                                    let success = document.getElementById("success");
+                                                    var error = document.getElementById("error");
+                                                    var success = document.getElementById("success");
 
                                                     if (xhr.readyState === 4 && xhr.status === 200) {
                                                         // La petición se ha completado y se ha recibido una respuesta exitosa
@@ -246,12 +250,20 @@
                                                         success.style.display = "block";
                                                         success.firstChild.nodeValue = "Contraseña actualizada correctamente";
 
+                                                        setTimeout(() => {
+                                                            success.style.display = "none"
+                                                        }, 3000);
+
                                                     } else if (xhr.readyState === 4 && xhr.status != 200) {
-                                                       //error
+                                                        //error
                                                         success.style.display = "none";
                                                         error.style.display = "block";
                                                         let arr = JSON.parse(xhr.responseText);
                                                         arr = Object.values(arr);
+
+                                                        setTimeout(() => {
+                                                            error.style.display = "none"
+                                                        }, 3000);
 
                                                         error.firstChild.nodeValue = arr[0];
                                                     }
