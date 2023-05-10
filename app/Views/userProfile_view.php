@@ -59,8 +59,9 @@
                                                     <div class="col-md-12">
                                                         <div class="profile-img-edit">
                                                             <div class="crm-profile-img-edit">
-                                                                <?php if (isset($usuario['image']) || !empty($usuario['image'])) {
+                                                                <?php if (isset($usuario['image']) && $usuario['image'] !="NULL") {
                                                                     $user = $usuario['image'];
+                                                                    
                                                                 } else {
                                                                     if ($usuario['genero'] != "mujer") {
                                                                         $user = "assets/images/user/1.jpg";
@@ -71,9 +72,12 @@
 
                                                                 ?>
                                                                 <img class="crm-profile-pic rounded-circle avatar-100" src="<?= $user ?>" alt="profile-pic" id="profileImage">
-                                                                <div class="crm-p-image bg-primary">
+                                                                <div class="crm-p-image bg-primary" style="left: 31px;">
                                                                     <i class="las la-pen upload-button"></i>
-                                                                    <input class="file-upload" type="file" accept="image/*" name="image">
+                                                                    <input class="file-upload" type="file" accept="image/*" name="image" id="image">
+                                                                </div>
+                                                                <div class="crm-p-image bg-primary" id="deleteImageProfile">
+                                                                    <i class="las la-trash-alt" style="font-size: 13px;line-height: 26px;"></i>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -142,6 +146,32 @@
                                     </div>
 
                                     <script>
+                                        
+                                        document.getElementById("deleteImageProfile").addEventListener("click", () => {
+
+                                            $.ajax({
+                                                type: "POST",
+                                                url: '/deleteImagePerfil',
+                                                dataType: 'json',
+                                                success: function(result) {
+                                                    
+                                                   
+
+                                                    let img = result.usuario.image;
+                                                    profileImage.src = img;
+
+                                                    if (result.usuario.genero != "mujer" ) {
+                                                        img = "assets/images/user/1.jpg";
+                                                    } else {
+                                                        img = "assets/images/user/2.jpg";
+                                                    }
+                                                    profileImage.src = img;
+                                                },
+
+                                            });
+                                        });
+
+
                                         var form1 = document.querySelector('#editUsuarioForm');
                                         form1.addEventListener('submit', function(event) {
                                             event.preventDefault();
@@ -155,9 +185,12 @@
                                                 let success = document.getElementById("success");
                                                 if (xhr2.status === 200) {
                                                     let result = JSON.parse(xhr2.responseText);
+                                                    document.getElementById("image").value="";
+                                                    document.getElementById("profile-detail").innerHTML = `<h5><a href="/perfil">${result.usuario.nombre+" "+result.usuario.apellidos}</a></h5><p>${result.usuario.email}</p>`
+
                                                     let img = result.usuario.image;
 
-                                                    if (img != null) {
+                                                    if (img != "NULL") {
                                                         profileImage.src = img;
                                                     } else {
                                                         if (result.usuario.genero != "mujer") {
@@ -171,7 +204,7 @@
                                                     modalError.style.display = "none";
                                                     success.style.display = "block";
                                                     success.firstChild.nodeValue = "Usuario actualizado correctamente";
-                                                    //document.getElementById("fname").nextSibling.innerHTML="SASS";
+                                                   
                                                     setTimeout(() => {
                                                         success.style.display = "none"
                                                     }, 3000);
@@ -179,6 +212,8 @@
                                                     success.style.display = "none";
                                                     modalError.style.display = "block";
                                                     let errorText = JSON.parse(xhr2.response);
+
+
                                                     let array = Object.values(errorText);
                                                     errorText = "";
                                                     for (let i = 0; i < array.length; i++) {

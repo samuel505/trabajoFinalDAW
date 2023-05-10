@@ -21,6 +21,24 @@ class PerfilUsuarioController  extends BaseController
         return view('userProfile_view', $data);
     }
 
+    function deleteImageProfile()
+    {
+        $usuarioModel = new UsuarioSistemaModel();
+       $result = $usuarioModel->deleteImageProfile(session()->get("id_usuario"));
+       //result = false;
+        if ($result) {
+            http_response_code(200);
+            $data['usuario'] = $usuarioModel->getUsuario(session()->get("id_usuario"));
+
+            echo json_encode($data);
+        } else {
+            http_response_code(400);
+
+            echo json_encode("error al actualizar el usuario");
+            
+        }
+        exit;
+    }
 
     function editUsuario()
     {
@@ -30,14 +48,19 @@ class PerfilUsuarioController  extends BaseController
 
         $image = $this->request->getFile('image');
         $data['errores'] = $this->checkForm($r);
-
-
-
+        $ubicacion= $usuarioModel->getUsuario(session()->get("id_usuario"))['image'];
+    
+        
         if (count($data['errores']) == 0) {
             $filecode = uniqid();
 
             if ($image->isValid() && !$image->hasMoved()) {
                 $route = "profiles/";
+            
+            if(!empty($ubicacion)&& $ubicacion !="NULL"){
+                unlink($ubicacion);
+            }
+              
 
                 $name = $image->getClientName();
 
@@ -147,7 +170,7 @@ class PerfilUsuarioController  extends BaseController
         if (isset($data['email']) || !empty($data['email'])) {
             if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
                 $errores['email'] = "Inserte un correo electronico valido";
-            } else if ($model->existeCorreo($data['email'])) {
+            } else if ($model->existeCorreo($data['email'],session()->get("id_usuario"))) {
                 $errores['email'] = "El correo electronico ya existe";
             }
         } else {

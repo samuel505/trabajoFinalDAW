@@ -23,10 +23,6 @@ class UploadFileController extends BaseController
 
         $home = new HomeController();
 
-        $reemplazar = $this->request->getGet("reemplazar");
-
-
-
         foreach ($archivos as $archivo) {
 
             $data['errores'] = $this->checkForm($archivo);
@@ -38,8 +34,6 @@ class UploadFileController extends BaseController
                 if ($archivo->isValid() && !$archivo->hasMoved()) {
                     $route = "uploads/";
                     $name = $archivo->getClientName();
-                    
-
 
                     $type = pathinfo($route . $name, PATHINFO_EXTENSION);
 

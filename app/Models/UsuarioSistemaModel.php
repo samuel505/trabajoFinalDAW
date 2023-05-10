@@ -50,6 +50,13 @@ class UsuarioSistemaModel extends Model
         return false;
     }
 
+
+    function deleteImageProfile($id)
+    {
+        $result = $this->set("image", "NULL")->where("id_usuario", $id)->update();
+        return $result;
+    }
+
     function editUsuario($id, $data)
     {
 
@@ -83,11 +90,11 @@ class UsuarioSistemaModel extends Model
         }
     }
 
-function existeCorreo($email)
-{
-    $r =$this->select("*")->where("email",$email)->get()->getResultArray();
-    return count($r)>0;
-}
+    function existeCorreo($email, $id)
+    {
+        $r = $this->select("*")->where("email", $email)->where("id_usuario <>", $id)->get()->getResultArray();
+        return count($r) > 0;
+    }
 
     function cambiarPlan($usuario, $id)
     {

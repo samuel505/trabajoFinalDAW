@@ -56,7 +56,7 @@
                                                     <?= isset($usuario['nombre'][0]) ? strtoupper($usuario['nombre'][0]) : "?" ?>
                                                     <a href=""></a>
                                                 </div>
-                                                <div class="profile-detail mt-3">
+                                                <div class="profile-detail mt-3" id="profile-detail">
                                                     <h5><a href="/perfil"><?= isset($usuario['nombre']) && isset($usuario['apellidos']) ? $usuario['nombre'] . " " . $usuario['apellidos'] : "#" ?></a></h5>
                                                     <p><?= isset($usuario['email']) ? $usuario['email'] : "ERROR CORREO" ?></p>
                                                 </div>

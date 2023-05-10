@@ -67,6 +67,7 @@ if (!session()->has('id_usuario')) {
 
     
     $routes->get('perfil', 'PerfilUsuarioController::index');
+    $routes->post('deleteImagePerfil', 'PerfilUsuarioController::deleteImageProfile');
     $routes->get('planes', 'PlanesController::index');
     $routes->post('cambioPlan', 'PlanesController::cambioPlan');
     $routes->post('editUsuario', 'PerfilUsuarioController::editUsuario');
