@@ -155,8 +155,6 @@
                                                 dataType: 'json',
                                                 success: function(result) {
                                                     
-                                                   
-
                                                     let img = result.usuario.image;
                                                     profileImage.src = img;
 
@@ -167,8 +165,11 @@
                                                     }
                                                     profileImage.src = img;
                                                 },
+                                                
 
-                                            });
+                                            }).fail( function(result) {
+                                                    console.log(result.responseText);
+                                                });
                                         });
 
 
