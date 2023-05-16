@@ -23,6 +23,12 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
+                            <div class="alert text-white bg-danger" role="alert" style="display:none;" id="error">
+                                <div class="text-center text-uppercase iq-alert-text"></div>
+                            </div>
+                            <div class="alert text-white bg-success" role="alert" style="display:none;" id="success">
+                                <div class="text-center text-uppercase iq-alert-text"></div>
+                            </div>
                             <div class="modal fade show" id="modalUploadFile" tabindex="-1" aria-labelledby="modalUploadFile" style="display: none;" aria-modal="true" role="dialog">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -178,14 +184,31 @@
         <script>
             // por hacer: mostar un mensaje de copiado, hacer un contador y quitar el mensaje
             function copiarEnlace(boton) {
+                let modalError = document.getElementById("error");
+                let success = document.getElementById("success");
                 let enlace = boton.title;
                 navigator.clipboard.writeText(enlace)
                     .then(function() {
+                            let modalError = document.getElementById("error");
+                            let modalsuccess = document.getElementById("success");
+                            modalError.style.display = "none";
+                            modalsuccess.style.display = "block";
+                            modalsuccess.firstChild.nodeValue = 'Enlace copiado al portapapeles';
+                            setTimeout(() => {
+                                modalsuccess.style.display = "none"
+                            }, 3000);
+                        },
+                        function() {
+                            let modalError = document.getElementById("error");
+                            let modalsuccess = document.getElementById("success");
+                            modalsuccess.style.display = "none";
+                            modalError.style.display = "block";
+                            modalError.firstChild.nodeValue = 'Error al copiar el enlace';
+                            setTimeout(() => {
+                                modalError.style.display = "none"
+                            }, 3000);
 
-                        alert('Enlace copiado al portapapeles');
-                    }, function() {
-                        alert('Error al copiar el enlace');
-                    });
+                        });
             }
         </script>
         <script>

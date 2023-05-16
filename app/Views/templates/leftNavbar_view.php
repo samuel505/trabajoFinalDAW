@@ -81,12 +81,12 @@
     <div class="data-scrollbar" data-scroll="1">
         <?php if (\Config\Services::uri()->getPath() == "/") { ?>
             <div class="new-create select-dropdown input-prepend input-append <?= \Config\Services::uri()->getPath() == "papelera" ? "d-none" : "" ?>">
-                <div class="btn-group ">
+                <div class="btn-group"style="cursor:pointer">
                     <div data-toggle="dropdown">
                         <div class="search-query selet-caption"><i class="las la-plus pr-2"></i>Crear nueva</div><span class="search-replace"></span>
                         <span class="caret"><!--icon--></span>
                     </div>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" style="cursor:pointer">
                         <li>
                             <div class="item" id="subida" onclick="clickInput()"><i class="ri-file-upload-line pr-3"></i>Subida de archivo</div>
                         </li>

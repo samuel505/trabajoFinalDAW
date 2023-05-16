@@ -60,7 +60,7 @@ class RegisterController extends BaseController
         if (isset($data['email']) || !empty($data['email'])) {
             if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
                 $errores['email'] = "Inserte un correo electronico valido";
-            } else if ($model->existeCorreo($data['email'])) {
+            } else if ($model->existeCorreoRegister($data['email'])) {
                 $errores['email'] = "El correo electronico ya existe";
             }
         } else {

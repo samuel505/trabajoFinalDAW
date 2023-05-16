@@ -7,36 +7,29 @@
                     <img src="../assets/images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo">
                 </a>
             </div>
+
             <div class="iq-search-bar device-search">
                 <div class="input-prepend input-append">
                     <div class="btn-group">
                         <label class="dropdown-toggle searchbox" data-toggle="dropdown">
-                            <input class="dropdown-toggle search-query text search-input" type="text" placeholder="Escribe para buscar..." onkeyup="search(this.value)"><span class="search-replace"></span>
-                            <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                            <input class="dropdown-toggle search-query text search-input" type="text" placeholder="Escribe para buscar..." onkeyup="search(this.value)" id="busqueda"><span class="search-replace"></span>
+                            <span class="search-link" href="#"><i class="ri-search-line"></i></span>
                         </label>
                     </div>
                 </div>
             </div>
+            <script>
+                if (window.location.pathname == "/perfil") {
+                    document.getElementById("busqueda").disabled = true;
 
+                }
+            </script>
             <div class="d-flex align-items-center">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
                     <i class="ri-menu-3-line"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-list align-items-center">
-                        <li class="nav-item nav-icon search-content">
-                            <a href="#" class="search-toggle rounded" id="dropdownSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ri-search-line"></i>
-                            </a>
-                            <div class="iq-search-bar iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownSearch">
-                                <form action="#" class="searchbox p-2">
-                                    <div class="form-group mb-0 position-relative">
-                                        <input type="text" class="text search-input font-size-12" placeholder="Escribe para buscar">
-                                        <a href="#" class="search-link"><i class="las la-search"></i></a>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
                         <li class="nav-item nav-icon dropdown caption-content">
                             <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="caption bg-primary line-height"><?= isset($usuario['nombre'][0]) ? strtoupper($usuario['nombre'][0]) : '?' ?></div>

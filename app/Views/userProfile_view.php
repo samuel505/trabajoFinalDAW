@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-
 <body>
     <div class="wrapper">
         <?php include "templates/leftNavbar_view.php" ?>
@@ -59,9 +58,8 @@
                                                     <div class="col-md-12">
                                                         <div class="profile-img-edit">
                                                             <div class="crm-profile-img-edit">
-                                                                <?php if (isset($usuario['image']) && $usuario['image'] !="NULL") {
+                                                                <?php if (isset($usuario['image']) && $usuario['image'] != "NULL") {
                                                                     $user = $usuario['image'];
-                                                                    
                                                                 } else {
                                                                     if ($usuario['genero'] != "mujer") {
                                                                         $user = "assets/images/user/1.jpg";
@@ -146,7 +144,6 @@
                                     </div>
 
                                     <script>
-                                        
                                         document.getElementById("deleteImageProfile").addEventListener("click", () => {
 
                                             $.ajax({
@@ -154,22 +151,22 @@
                                                 url: '/deleteImagePerfil',
                                                 dataType: 'json',
                                                 success: function(result) {
-                                                    
+
                                                     let img = result.usuario.image;
                                                     profileImage.src = img;
 
-                                                    if (result.usuario.genero != "mujer" ) {
+                                                    if (result.usuario.genero != "mujer") {
                                                         img = "assets/images/user/1.jpg";
                                                     } else {
                                                         img = "assets/images/user/2.jpg";
                                                     }
                                                     profileImage.src = img;
                                                 },
-                                                
 
-                                            }).fail( function(result) {
-                                                    console.log(result.responseText);
-                                                });
+
+                                            }).fail(function(result) {
+                                                console.log(result.responseText);
+                                            });
                                         });
 
 
@@ -186,12 +183,11 @@
                                                 let success = document.getElementById("success");
                                                 if (xhr2.status === 200) {
                                                     let result = JSON.parse(xhr2.responseText);
-                                                    document.getElementById("image").value="";
+                                                    document.getElementById("image").value = "";
                                                     document.getElementById("profile-detail").innerHTML = `<h5><a href="/perfil">${result.usuario.nombre+" "+result.usuario.apellidos}</a></h5><p>${result.usuario.email}</p>`
 
                                                     let img = result.usuario.image;
-
-                                                    if (img != "NULL") {
+                                                    if (img != "NULL" && img != null) {
                                                         profileImage.src = img;
                                                     } else {
                                                         if (result.usuario.genero != "mujer") {
@@ -205,7 +201,7 @@
                                                     modalError.style.display = "none";
                                                     success.style.display = "block";
                                                     success.firstChild.nodeValue = "Usuario actualizado correctamente";
-                                                   
+
                                                     setTimeout(() => {
                                                         success.style.display = "none"
                                                     }, 3000);

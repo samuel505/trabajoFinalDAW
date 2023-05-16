@@ -96,6 +96,12 @@ class UsuarioSistemaModel extends Model
         return count($r) > 0;
     }
 
+    function existeCorreoRegister($email)
+    {
+        $r = $this->select("*")->where("email", $email)->get()->getResultArray();
+        return count($r) > 0;
+    }
+
     function cambiarPlan($usuario, $id)
     {
         return $this->set("id_plan", $id)->where("id_usuario", $usuario)->update();
