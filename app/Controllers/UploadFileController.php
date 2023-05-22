@@ -32,13 +32,13 @@ class UploadFileController extends BaseController
                 $filecode = uniqid();
 
                 if ($archivo->isValid() && !$archivo->hasMoved()) {
-                    $route = "uploads/";
+                    $route = "uploads/".session()->get("id_usuario")."/";
                     $name = $archivo->getClientName();
 
                     $type = pathinfo($route . $name, PATHINFO_EXTENSION);
 
 
-                    $archivo->move('uploads', (isset($type) && !empty($type) ? ($filecode . "." . $type) : ($filecode)));
+                    $archivo->move('uploads/'.session()->get("id_usuario")."/", (isset($type) && !empty($type) ? ($filecode . "." . $type) : ($filecode)));
 
                     $uploadFileModel = new FileModel();
 

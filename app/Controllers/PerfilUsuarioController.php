@@ -59,7 +59,7 @@ class PerfilUsuarioController  extends BaseController
             $filecode = uniqid();
 
             if ($image->isValid() && !$image->hasMoved()) {
-                $route = "profiles/";
+                $route = "profiles/".session()->get("id_usuario")."/";
 
                 if (!empty($ubicacion) && $ubicacion != "NULL") {
                     unlink($ubicacion);
@@ -70,7 +70,7 @@ class PerfilUsuarioController  extends BaseController
 
                 $type = pathinfo($route . $name, PATHINFO_EXTENSION);
 
-                $image->move('profiles', $filecode . "." . $type);
+                $image->move('profiles/'.session()->get("id_usuario")."/", $filecode . "." . $type);
 
                 $r['image'] = $route . $filecode . "." . $type;
             }

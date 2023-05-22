@@ -12,7 +12,7 @@ class DownloadController  extends BaseController
     public function downloadFile($filename)
     {
 
-        $filepath = 'uploads/' . $filename;
+        $filepath = 'uploads/'.session()->get("id_usuario")."/" . $filename;
         $filecode = filter_var(substr($filename, 0, (!is_numeric(strpos($filename, ".")) ? strlen($filename) : strpos($filename, "."))));
         $downloadFileModel = new FileModel();
         $result = $downloadFileModel->getFile($filecode);

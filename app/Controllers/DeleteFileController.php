@@ -18,7 +18,13 @@ class DeleteFileController extends BaseController
 
         if ($file !== false) {
             $route = (isset($file[0]["type"]) && !empty($file[0]["type"]) ? ($file[0]["filecode"] . "." . $file[0]["type"]) : ($file[0]["filecode"]));
-            rename($file[0]['ruta_local'], "trash/" . $route);
+
+            if (!is_dir("trash/" . session()->get("id_usuario") . "/")) {
+                mkdir("trash/" . session()->get("id_usuario") . "/", 755, true);
+            }
+
+            rename($file[0]['ruta_local'], "trash/" . session()->get("id_usuario") . "/" . $route);
+
             $result =  $fileModel->deleteFile($filecode, session()->get('id_usuario'));
         } else {
             $result = false;
@@ -53,10 +59,10 @@ class DeleteFileController extends BaseController
             $route = (isset($file[0]["type"]) && !empty($file[0]["type"]) ? ($file[0]["filecode"] . "." . $file[0]["type"]) : ($file[0]["filecode"]));
 
 
-            rename("trash/" . $route, $file[0]['ruta_local']);
+            rename("trash/" . session()->get("id_usuario") . "/" . $route, $file[0]['ruta_local']);
 
             $result =  $fileModel->recoverFile($filecode, session()->get('id_usuario'));
-        }else{
+        } else {
             $result = false;
         }
         if ($result) {
