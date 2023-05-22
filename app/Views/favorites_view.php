@@ -218,7 +218,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: '/deleteFile',
+                    url: '/deleteFileFavoritos',
                     dataType: 'json',
                     data: {
                         "filecode": filecode

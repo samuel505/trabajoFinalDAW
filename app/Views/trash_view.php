@@ -77,7 +77,7 @@
                                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton003" style>
                                                             <span hidden class="deleted"><?= $archivo['filecode'] ?></span>
                                                             <button class="dropdown-item" onclick="recoverFile(this)"><i class="ri-restart-line mr-2"></i>Restaurar</button>
-                                                            <button class="dropdown-item" onclick="mostrarModalConfirmacion()" id="borrarFile"><i class="ri-delete-bin-6-fill mr-2"></i>Borrado permanente</button>
+                                                            <button class="dropdown-item" onclick="mostrarModalConfirmacion()" id="borrar"><i class="ri-delete-bin-6-fill mr-2"></i>Borrado permanente</button>
                                                         </div>
                                                     </div>
                                                 </div>

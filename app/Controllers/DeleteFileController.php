@@ -48,6 +48,51 @@ class DeleteFileController extends BaseController
         exit;
     }
 
+
+
+    public function borrarFavorites()
+    {
+
+        $fileModel = new FileModel();
+
+        $filecode = $this->request->getPost('filecode');
+        $file = $fileModel->getFile($filecode);
+
+
+
+        if ($file !== false) {
+            $route = (isset($file[0]["type"]) && !empty($file[0]["type"]) ? ($file[0]["filecode"] . "." . $file[0]["type"]) : ($file[0]["filecode"]));
+
+            if (!is_dir("trash/" . session()->get("id_usuario") . "/")) {
+                mkdir("trash/" . session()->get("id_usuario") . "/", 755, true);
+            }
+
+            rename($file[0]['ruta_local'], "trash/" . session()->get("id_usuario") . "/" . $route);
+
+            $result =  $fileModel->deleteFile($filecode, session()->get('id_usuario'));
+        } else {
+            $result = false;
+        }
+
+
+        if ($result) {
+            // enviar una respuesta HTTP 200 OK
+            http_response_code(200);
+            $archivos = $fileModel->getArchivosFavoritos(session()->get("id_usuario"));
+
+            // devolver la respuesta como un objeto JSON
+            echo json_encode($archivos);
+        } else {
+            // enviar una respuesta HTTP 400 
+            http_response_code(400);
+
+            // devolver la respuesta como un objeto JSON
+            echo json_encode('no se pudo borrar');
+        }
+        exit;
+    }
+
+
     public function restaurar()
     {
 

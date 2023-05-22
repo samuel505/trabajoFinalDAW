@@ -56,6 +56,7 @@ if (!session()->has('id_usuario')) {
     $routes->get('file/(:any)', 'DownloadController::downloadFile/$1');
 
     $routes->post('deleteFile', 'DeleteFileController::borrar');
+    $routes->post('deleteFileFavoritos', 'DeleteFileController::borrarFavorites');
     $routes->post('recoverFile', 'DeleteFileController::restaurar');
     //$routes->post('recoverAllFile', 'DeleteFileController::restaurar');
 
