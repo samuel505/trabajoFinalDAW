@@ -78,3 +78,11 @@ in APPPATH/Controllers/DeleteFileController.php on line 22.
  4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
  5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
  6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-22 17:47:26 --> unlink(trash/646b985d92f18.pdf): No such file or directory
+in APPPATH/Controllers/DeleteFileController.php on line 102.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Controllers/DeleteFileController.php(102): unlink()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\DeleteFileController->borradoPermanente()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()

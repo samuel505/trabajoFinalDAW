@@ -99,7 +99,7 @@ class DeleteFileController extends BaseController
 
             $route = (isset($file[0]["type"]) && !empty($file[0]["type"]) ? ($file[0]["filecode"] . "." . $file[0]["type"]) : ($file[0]["filecode"]));
 
-            $result2 = unlink("trash/" . $route);
+            $result2 = unlink("trash/". session()->get("id_usuario") . "/" . $route);
             $result = $fileModel->permanentDelete($filecode, session()->get('id_usuario'));
         } else {
             $result = false;
@@ -138,14 +138,14 @@ class DeleteFileController extends BaseController
         $home = new HomeController();
         $result = $fileModel->permanentDeleteAll(session()->get('id_usuario'));
 
-        $files = glob('trash/*'); //obtenemos todos los nombres de los ficheros
+        $files = glob('trash/'. session()->get("id_usuario") . "/*"); //obtenemos todos los nombres de los ficheros
         foreach ($files as $file) {
             if (is_file($file)) {
                 unlink($file);
             }
         }
 
-        $files = glob('trash/*');
+        $files = glob('trash/'. session()->get("id_usuario") . "/*");
 
         if ($result !== false && count($files) == 0) {
             // enviar una respuesta HTTP 200 OK
