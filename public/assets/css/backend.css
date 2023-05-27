@@ -355,6 +355,9 @@ legend {
   color: inherit;
   white-space: normal;
 }
+ .searchBar-mobile {
+   display:none;
+  }
 
 @media (max-width: 1200px) {
   legend {
@@ -11876,6 +11879,11 @@ body.sidebar-main .iq-top-navbar {
     line-height: normal;
     min-height: unset;
   }
+  
+  .searchBar-mobile {
+   display:grid;
+  }
+  
 
   .iq-top-navbar .navbar-toggler {
     color: #8f93f6;

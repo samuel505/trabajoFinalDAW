@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
+
 <body>
     <div class="wrapper">
         <?php include "templates/leftNavbar_view.php" ?>
@@ -184,7 +185,7 @@
                                                 if (xhr2.status === 200) {
                                                     let result = JSON.parse(xhr2.responseText);
                                                     document.getElementById("image").value = "";
-                                                    document.getElementById("profile-detail").innerHTML = `<h5><a href="/perfil">${result.usuario.nombre+" "+result.usuario.apellidos}</a></h5><p>${result.usuario.email}</p>`
+                                                    document.getElementsByClassName("profile-detail")[0].innerHTML = `<h5><a href="/perfil">${result.usuario.nombre+" "+result.usuario.apellidos}</a></h5><p>${result.usuario.email}</p>`
 
                                                     let img = result.usuario.image;
                                                     if (img != "NULL" && img != null) {
