@@ -1,0 +1,28 @@
+CRITICAL - 2023-05-27 23:21:43 --> unlink(): No such file or directory
+in APPPATH/Controllers/PerfilUsuarioController.php on line 35.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Controllers/PerfilUsuarioController.php(35): unlink()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\PerfilUsuarioController->deleteImageProfile()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-27 23:58:32 --> There is no data to update.
+in SYSTEMPATH/BaseModel.php on line 924.
+ 1 SYSTEMPATH/BaseModel.php(924): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset()
+ 2 SYSTEMPATH/Model.php(756): CodeIgniter\BaseModel->update()
+ 3 APPPATH/Models/UsuarioSistemaModel.php(112): CodeIgniter\Model->update()
+ 4 APPPATH/Controllers/PerfilUsuarioController.php(217): App\Models\UsuarioSistemaModel->bajaUsuario()
+ 5 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\PerfilUsuarioController->bajaUsuario()
+ 6 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 8 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-27 23:59:58 --> There is no data to update.
+in SYSTEMPATH/BaseModel.php on line 924.
+ 1 SYSTEMPATH/BaseModel.php(924): CodeIgniter\Database\Exceptions\DataException::forEmptyDataset()
+ 2 SYSTEMPATH/Model.php(756): CodeIgniter\BaseModel->update()
+ 3 APPPATH/Models/UsuarioSistemaModel.php(113): CodeIgniter\Model->update()
+ 4 APPPATH/Controllers/PerfilUsuarioController.php(217): App\Models\UsuarioSistemaModel->bajaUsuario()
+ 5 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\PerfilUsuarioController->bajaUsuario()
+ 6 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 8 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()

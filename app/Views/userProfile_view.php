@@ -140,10 +140,34 @@
                                                     </div>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mr-2">Actualizar</button>
+                                                <button class="btn btn-primary " type="button" onclick="mostrarModalConfirmacion()">Borrar cuenta</button>
                                             </form>
                                         </div>
                                     </div>
-
+                                    <div class="modal" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="confirmModalLabel">¿Estás seguro de querer borrar la cuenta?</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Una vez borrada, no podras acceder a ella.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                    <button type="button" class="btn btn-primary" onclick="borrarcuenta()">Confirmar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        function mostrarModalConfirmacion() {
+                                            $('#confirmModal').modal('show');
+                                        }
+                                    </script>
                                     <script>
                                         document.getElementById("deleteImageProfile").addEventListener("click", () => {
 
@@ -228,6 +252,19 @@
                                             };
                                             xhr2.send(formData2);
                                         });
+
+                                        function borrarcuenta() {
+                                            $.ajax({
+                                                url: "/bajaUsuario",
+                                                type:"POST",
+                                                success: ()=> {
+                                                    window.location.href = "/logout";
+                                                },
+                                                error: (error)=> {
+                                                    console.log(error.responseText);
+                                                }
+                                            });
+                                        }
                                     </script>
                                 </div>
                                 <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
@@ -253,6 +290,7 @@
                                                     <input type="Password" class="form-control" id="newPass2" value="" name="newPass2">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mr-2" id="actualizarPass">Actualizar</button>
+
                                             </form>
                                         </div>
                                         <script>

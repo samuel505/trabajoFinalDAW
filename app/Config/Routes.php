@@ -74,7 +74,7 @@ if (!session()->has('id_usuario')) {
     $routes->post('editUsuario', 'PerfilUsuarioController::editUsuario');
     $routes->post('editPasswordUsuario', 'PerfilUsuarioController::editPassword');
 
-
+    $routes->post('bajaUsuario','PerfilUsuarioController::bajaUsuario');
     $routes->post('searchHome', 'SearchController::searchHome');
     $routes->post('searchFavoritos', 'SearchController::searchFavoritos');
     $routes->post('searchPapelera', 'SearchController::searchPapelera');

@@ -26,20 +26,22 @@ class PerfilUsuarioController  extends BaseController
         $usuarioModel = new UsuarioSistemaModel();
         $ubicacion = $usuarioModel->getUsuario(session()->get("id_usuario"))['image'];
 
-        $result = $usuarioModel->deleteImageProfile(session()->get("id_usuario"));
-        //$result = false;
-        if ($result) {
+        if (!is_null($ubicacion)) {
+            $result = $usuarioModel->deleteImageProfile(session()->get("id_usuario"));
+            //$result = false;
+            if ($result) {
 
-            http_response_code(200);
-            if ($ubicacion != "NULL") {
-                unlink($ubicacion);
+                http_response_code(200);
+                if ($ubicacion != "NULL") {
+                    unlink($ubicacion);
+                }
+                $data['usuario'] = $usuarioModel->getUsuario(session()->get("id_usuario"));
+                echo json_encode($data);
+            } else {
+                http_response_code(400);
+
+                echo json_encode("error al actualizar el usuario");
             }
-            $data['usuario'] = $usuarioModel->getUsuario(session()->get("id_usuario"));
-            echo json_encode($data);
-        } else {
-            http_response_code(400);
-
-            echo json_encode("error al actualizar el usuario");
         }
         exit;
     }
@@ -59,7 +61,7 @@ class PerfilUsuarioController  extends BaseController
             $filecode = uniqid();
 
             if ($image->isValid() && !$image->hasMoved()) {
-                $route = "profiles/".session()->get("id_usuario")."/";
+                $route = "profiles/" . session()->get("id_usuario") . "/";
 
                 if (!empty($ubicacion) && $ubicacion != "NULL") {
                     unlink($ubicacion);
@@ -70,7 +72,7 @@ class PerfilUsuarioController  extends BaseController
 
                 $type = pathinfo($route . $name, PATHINFO_EXTENSION);
 
-                $image->move('profiles/'.session()->get("id_usuario")."/", $filecode . "." . $type);
+                $image->move('profiles/' . session()->get("id_usuario") . "/", $filecode . "." . $type);
 
                 $r['image'] = $route . $filecode . "." . $type;
             }
@@ -207,5 +209,19 @@ class PerfilUsuarioController  extends BaseController
         }
 
         return $errores;
+    }
+
+    function bajaUsuario()
+    {
+        $modelBaja = new UsuarioSistemaModel();
+        
+        if ($modelBaja->bajaUsuario(session()->get("id_usuario"))) {
+            http_response_code(200);
+            exit;
+        } else {
+            http_response_code(400);
+            echo "No se pudo borrar el usuario";
+        }
+        exit;
     }
 }

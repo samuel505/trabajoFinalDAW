@@ -8,13 +8,13 @@ class UsuarioSistemaModel extends Model
 {
     protected $table = "usuarios";
     protected $primaryKey = "id_usuario";
-    protected $allowedFields = ['email', 'password', 'nombre', 'apellidos', 'pais', 'genero', 'fecha_nacimiento', 'image', 'id_plan'];
+    protected $allowedFields = ['email', 'password', 'nombre', 'apellidos', 'pais', 'genero', 'fecha_nacimiento', 'image', 'id_plan',"baja"];
 
 
     function login($post)
     {
 
-        $result = $this->select("*")->where("email", $post['email'])->get()->getResultArray();
+        $result = $this->select("*")->where("email", $post['email'])->where("baja",0)->get()->getResultArray();
 
         if (count($result) > 0) {
             if (password_verify($post['password'], $result[0]['password'])) {
@@ -105,5 +105,16 @@ class UsuarioSistemaModel extends Model
     function cambiarPlan($usuario, $id)
     {
         return $this->set("id_plan", $id)->where("id_usuario", $usuario)->update();
+    }
+
+    function bajaUsuario($id)
+    {
+
+        try {
+            $r =   $this->set("baja", 1)->where("id_usuario", $id)->update();
+        } catch (\CodeIgniter\Database\Exceptions\DatabaseException $e) {
+            return false;
+        }
+        return $r;
     }
 }
