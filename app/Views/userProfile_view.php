@@ -169,6 +169,7 @@
                                         }
                                     </script>
                                     <script>
+                                        
                                         document.getElementById("deleteImageProfile").addEventListener("click", () => {
 
                                             $.ajax({

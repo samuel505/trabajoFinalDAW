@@ -14,14 +14,13 @@
                         <div class="btn-group">
 
                             <label class="dropdown-toggle searchbox" data-toggle="dropdown">
-                                <input class="dropdown-toggle search-query text search-input" type="text" placeholder="Escribe para buscar..."><span class="search-replace"></span>
-                                <a class="search-link" href="#"><i class="ri-search-line"></i></a>
+                                <input class="dropdown-toggle search-query text search-input" type="text" placeholder="Escribe para buscar..." onkeyup="search(this.value)" <?= \Config\Services::uri()->getPath() != "/" && \Config\Services::uri()->getPath() != "favoritos" && \Config\Services::uri()->getPath() != "papelera" ? "disabled" : "" ?>><span class="search-replace"></span>
+                                <span class="search-link"><i class="ri-search-line"></i></span>
                             </label>
                         </div>
                     </div>
                 </form>
             </div>
-            
             <div class="d-flex align-items-center">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
                     <i class="ri-menu-3-line"></i>
@@ -35,7 +34,7 @@
                             <div class="iq-search-bar iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownSearch">
                                 <form action="#" class="searchbox p-2">
                                     <div class="form-group mb-0 position-relative">
-                                        <input type="text" class="text search-input font-size-12" placeholder="Escribe para buscar">
+                                        <input class="dropdown-toggle search-query text search-input" type="text" placeholder="Escribe para buscar..." onkeyup="search(this.value)">
                                         <a href="#" class="search-link"><i class="las la-search"></i></a>
                                     </div>
                                 </form>
