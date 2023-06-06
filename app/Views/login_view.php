@@ -23,6 +23,11 @@
                         <div class="iq-alert-text">El <b>correo</b> y/o <b>contraseña</b> son incorrectos</div>
                      </div>
                   <?php } ?>
+                  <?php if (isset($creada) && !empty($creada)) { ?>
+                     <div class="alert alert-success" role="alert">
+                        <div class="iq-alert-text">CUENTA CREADA CORRECTAMENTE</div>
+                     </div>
+                  <?php } ?>
                   <div class="sign-user_card">
                      <img src="assets/images/logo.png" class="img-fluid rounded-normal light-logo logo" alt="logo">
                      <h3 class="mb-3">Iniciar sesión</h3>

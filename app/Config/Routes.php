@@ -38,8 +38,9 @@ if (!session()->has('id_usuario')) {
         header("location: /login");
         die();
     }
-
+    
     $routes->get('/login', 'LoginController::index');
+    
     $routes->post('/login', 'LoginController::login');
     $routes->get('/register', 'RegisterController::index');
     $routes->post('/register', 'RegisterController::register');

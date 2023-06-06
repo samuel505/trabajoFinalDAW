@@ -1,0 +1,16 @@
+CRITICAL - 2023-06-05 22:41:58 --> rename(uploads/0/647e1f62807f1.pdf,trash/0/647e1f62807f1.pdf): No such file or directory
+in APPPATH/Controllers/DeleteFileController.php on line 26.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Controllers/DeleteFileController.php(26): rename()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\DeleteFileController->borrar()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-06-05 22:42:00 --> rename(uploads/0/647e1f7771f0b.pdf,trash/0/647e1f7771f0b.pdf): No such file or directory
+in APPPATH/Controllers/DeleteFileController.php on line 26.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Controllers/DeleteFileController.php(26): rename()
+ 3 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\DeleteFileController->borrar()
+ 4 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 5 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 6 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()

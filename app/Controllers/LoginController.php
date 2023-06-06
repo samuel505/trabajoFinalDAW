@@ -6,13 +6,19 @@ class LoginController extends BaseController
 {
     public function index()
     {
-        return view('login_view');
+        $data = [];
+        $r = session()->get("cuenta_creada");
+        if (!is_null($r)) {
+            $data['creada'] = $r;
+            unset($_SESSION['cuenta_creada']);
+        }
+
+        return view('login_view', $data);
     }
 
     function logout()
     {
-        $session = session();
-        $session->destroy();
+        session()->destroy();
         header("location: /login");
         die();
     }
@@ -23,7 +29,7 @@ class LoginController extends BaseController
 
 
         $loginModel = new \App\Models\UsuarioSistemaModel();
-        
+
         $post = $this->request->getPost();
 
         $result = $loginModel->login($post);
@@ -36,10 +42,8 @@ class LoginController extends BaseController
             die();
         } else {
             $data['errores'] = $errorLogin = "Correo o contraseña erroneos";
-            $data['datos']=$post;
+            $data['datos'] = $post;
             return view('login_view', $data);
         }
     }
-
-    
 }

@@ -26,6 +26,7 @@ class RegisterController extends BaseController
         }
 
         if (isset($result) && $result) {
+            session()->set("cuenta_creada",true);
             header("location: /login");
             die();
         } else {
